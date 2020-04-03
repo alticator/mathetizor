@@ -44,13 +44,17 @@ function runCommand() {
 	else if (tab == "average") {
 		var numbers = [];
 		for (var i = 0; i < averageNumberAmount; i++) {
-			numbers.push($("#average-" + i+1).val());
+			numbers.push($("#average-" + (i+1)).val());
 		}
 		for (var i = 0; i < averageNumberAmount; i++) {
-			convert(numbers[i]);
+			numbers[i] = convert(numbers[i]);
 		}
 		var resultNumber = 0;
-		
+		for (var i = 0; i < numbers.length; i++) {
+			resultNumber += numbers[i];
+		}
+		resultNumber = resultNumber / numbers.length;
+		$("#result").html("Average: " + resultNumber);
 	}
 }
 
