@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+	<head>
+		<title>
+			Alticator Mathetizor
+		</title>
+		<link rel="stylesheet" href="ui.css">
+	</head>
+	<body>
+		<nav>
+			Alticator Mathetizor
+		</nav>
+		<div id="tab-bar">
+				<button class="tab-button tab-selected" id="tab-button-overview" onclick="showTab('overview', this)">
+					Overview
+				</button>
+				<button class="tab-button" id="tab-button-average" onclick="showTab('average', this)">
+					Average
+				</button>
+			</div>
+		<div class="tab" id="tab-overview">
+			Number One: <input class="number" id="overview-1"><br>
+			Number Two: <input class="number" id="overview-2">
+		</div>
+		<div class="tab" id="tab-average">
+			<div id="average-inputs">
+				Number One: <input class="number" id="average-1"><br>
+				Number Two: <input class="number" id="average-2"><br>
+			</div>
+			<button onclick="averageAddInput()">Add Number</button>
+		</div>
+		<div id="result">Results | Press Enter to View</div>
+		<script src="jquery-3.4.1.min.js"></script>
+		<script src="app.js"></script>
+	</body>
+</html>

@@ -1,0 +1,16 @@
+/*
+	Alticator 2020
+*/
+
+html, body {margin: 0;}
+body {text-align: center; color: rgb(0, 155, 155);}
+* {font-family: sans-serif;}
+nav {background-color: rgba(0, 0, 0, 0.8); color: white; padding: 15px; font-size: 24px;}
+button, input {color: white; background-color: rgba(0, 100, 100, 0.8); margin: 0; border: none; font-size: 14px; padding: 3px; outline: none; font-size: 24px; padding: 3px;}
+#result {padding: 20px; margin: auto; margin-top: 5vh; font-size: 24px; box-shadow: 0px 0px 30px gray; width: 80vw;}
+input {min-width: 40vw; transition: 0.5s; margin: 3px;}
+input:focus {min-width: 50vw; box-shadow: 5px 5px 20px gray;}
+.tab {padding: 5px; margin: 10px; margin-top: 10vh;}
+#tab-bar {background-color: rgba(0, 0, 0, 0.8);}
+.tab-button {background-color: transparent; padding: 5px;}
+.tab-selected {background-color: white; color: rgb(0, 155, 155);}
