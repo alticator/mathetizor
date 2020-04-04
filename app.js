@@ -28,7 +28,6 @@ function convert(number) {
 var averageNumberAmount = 2;
 
 function averageAddInput() {
-	console.log("Running");
 	averageNumberAmount++;
 	$("#average-inputs").append('<input id="average-' + averageNumberAmount + '"><br>');
 }
@@ -55,6 +54,35 @@ function runCommand() {
 		}
 		resultNumber = resultNumber / numbers.length;
 		$("#result").html("Average: " + resultNumber);
+	}
+	else if (tab == "fractions") {
+		var fractionOne = {
+			numerator: convert($("#fractions-1").val()),
+			denominator: convert($("#fractions-2").val())
+		};
+		var fractionTwo = {
+			numerator: convert($("#fractions-3").val()),
+			denominator: convert($("#fractions-4").val())
+		};
+		var product = '<sup>' + (fractionOne.numerator * fractionTwo.numerator) + '</sup>&frasl;<sub>' + (fractionOne.denominator * fractionTwo.denominator) + '</sub>';
+		var reciprocal = {
+			numerator: fractionTwo.denominator,
+			denominator: fractionTwo.numerator
+		};
+		var quotient = '<sup>' + (fractionOne.numerator * reciprocal.numerator) + '</sup>&frasl;<sub>' + (fractionOne.denominator * reciprocal.denominator) + '</sub>';
+		if (fractionOne.denominator != fractionTwo.denominator) {
+			fractionOne.numerator = fractionOne.numerator * fractionTwo.denominator;
+			fractionTwo.numerator = fractionTwo.numerator * fractionOne.denominator;
+			
+			var newDenominator = fractionOne.denominator * fractionTwo.denominator;
+			fractionOne.denominator = newDenominator;
+			fractionTwo.denominator = newDenominator;
+		}
+		var sum = fractionOne.numerator + fractionTwo.numerator;
+		sum = '<sup>' + sum + '</sup>&frasl;<sub>' + fractionOne.denominator + '</sub>';
+		var difference = fractionOne.numerator - fractionTwo.numerator;
+		difference = '<sup>' + difference + '</sup>&frasl;<sub>' + fractionOne.denominator + '</sub>';
+		$("#result").html("Sum: " + sum + line + "Difference: " + difference + line + "Product: " + product + line + "Quotient: " + quotient + line + "Note: The fractions may not be in their simplest forms.");
 	}
 }
 

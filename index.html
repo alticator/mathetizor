@@ -17,19 +17,32 @@
 				<button class="tab-button" id="tab-button-average" onclick="showTab('average', this)">
 					Average
 				</button>
+				<button class="tab-button" id="tab-button-fractions" onclick="showTab('fractions', this)">
+					Fractions
+				</button>
 			</div>
 		<div class="tab" id="tab-overview">
-			Number One: <input class="number" id="overview-1"><br>
-			Number Two: <input class="number" id="overview-2">
+			<div id="overview-inputs">
+				Number One: <input id="overview-1"><br>
+				Number Two: <input id="overview-2"><br>
+			</div>
 		</div>
 		<div class="tab" id="tab-average">
 			<div id="average-inputs">
-				Number One: <input class="number" id="average-1"><br>
-				Number Two: <input class="number" id="average-2"><br>
+				Number One: <input id="average-1"><br>
+				Number Two: <input id="average-2"><br>
 			</div>
 			<button onclick="averageAddInput()">Add Number</button>
 		</div>
-		<div id="result">Results | Press Enter to View</div>
+		<div class="tab" id="tab-fractions">
+			<div class="fraction"><input class="top" id="fractions-1" placeholder="Top"><input id="fractions-2" placeholder="Bottom"></div>
+			<div class="fraction"><input class="top" id="fractions-3" placeholder="Top"><input id="fractions-4" placeholder="Bottom"></div>
+		</div>
+		<button onclick="runCommand()">Calculate / Run Command</button>
+		<div id="results-container">
+			<h2>Results</h2>
+			<div id="result">Press "Calculate / Run Command" or Enter to View</div>
+		</div>
 		<script src="jquery-3.4.1.min.js"></script>
 		<script src="app.js"></script>
 	</body>
