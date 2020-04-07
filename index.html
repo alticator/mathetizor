@@ -20,12 +20,13 @@
 				<button class="tab-button" id="tab-button-fractions" onclick="showTab('fractions', this)">
 					Fractions
 				</button>
+				<button class="tab-button" id="tab-button-root" onclick="showTab('root', this)">
+					Root
+				</button>
 			</div>
 		<div class="tab" id="tab-overview">
-			<div id="overview-inputs">
-				Number One: <input id="overview-1"><br>
-				Number Two: <input id="overview-2"><br>
-			</div>
+			Number One: <input id="overview-1"><br>
+			Number Two: <input id="overview-2"><br>
 		</div>
 		<div class="tab" id="tab-average">
 			<div id="average-inputs">
@@ -37,6 +38,10 @@
 		<div class="tab" id="tab-fractions">
 			<div class="fraction"><input class="top" id="fractions-1" placeholder="Top"><input id="fractions-2" placeholder="Bottom"></div>
 			<div class="fraction"><input class="top" id="fractions-3" placeholder="Top"><input id="fractions-4" placeholder="Bottom"></div>
+		</div>
+		<div class="tab" id="tab-root">
+			Number: <input id="root-1"><br>
+			Root (eg. 2 for Square Root, 3 for Cube Root): <input id="root-2"><br>
 		</div>
 		<button onclick="runCommand()">Calculate / Run Command</button>
 		<div id="results-container">

@@ -38,7 +38,13 @@ function runCommand() {
 		var numberTwo = $("#overview-2").val();
 		numberOne = convert(numberOne);
 		numberTwo = convert(numberTwo);
-		$("#result").html("Sum: " + (numberOne + numberTwo) + line + "Difference: " + (numberOne - numberTwo) + line + "Product: " + (numberOne * numberTwo) + line + "Quotient: " + (numberOne / numberTwo));
+		var sum = (numberOne * 1000000 + numberTwo * 1000000) / 1000000;
+		var difference = (numberOne * 1000000 - numberTwo * 1000000) / 1000000;
+		var product = ((numberOne * 1000000) * (numberTwo * 1000000)) / 1000000000000;
+		var quotient = ((numberOne * 1000000) / (numberTwo * 1000000));
+		var remainder = numberOne % numberTwo;
+		var exponentiation = Math.pow(numberOne, numberTwo);
+		$("#result").html("Sum: " + sum + line + "Difference: " + difference + line + "Product: " + product + line + "Quotient: " + quotient + line + "Remainder: " + remainder + line + "Number One to the power of Number Two: " + exponentiation + line + "Some calculations may not give entirely accurate results.");
 	}
 	else if (tab == "average") {
 		var numbers = [];
@@ -84,6 +90,12 @@ function runCommand() {
 		difference = '<sup>' + difference + '</sup>&frasl;<sub>' + fractionOne.denominator + '</sub>';
 		$("#result").html("Sum: " + sum + line + "Difference: " + difference + line + "Product: " + product + line + "Quotient: " + quotient + line + "Note: The fractions may not be in their simplest forms.");
 	}
+	else if (tab == "root") {
+		var numberOne = $("#root-1").val();
+		var numberTwo = $("#root-2").val();
+		var result = Math.pow(numberOne, 1 / numberTwo);
+		$("#result").html(result);
+	}
 }
 
 function showTab(newTab) {
@@ -91,6 +103,7 @@ function showTab(newTab) {
 	$("#tab-" + newTab).show();
 	$(".tab-button").removeClass("tab-selected");
 	$("#tab-button-" + newTab).addClass("tab-selected");
+	$("#result").html("Press \"Calculate / Run Command\" or Enter to View");
 	tab = newTab;
 }
 
