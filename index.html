@@ -11,19 +11,49 @@
 			Alticator Mathetizor
 		</nav>
 		<div id="tab-bar">
-				<button class="tab-button tab-selected" id="tab-button-overview" onclick="showTab('overview', this)">
-					Overview
-				</button>
-				<button class="tab-button" id="tab-button-average" onclick="showTab('average', this)">
-					Average
-				</button>
-				<button class="tab-button" id="tab-button-fractions" onclick="showTab('fractions', this)">
-					Fractions
-				</button>
-				<button class="tab-button" id="tab-button-root" onclick="showTab('root', this)">
-					Root
-				</button>
+			<button class="tab-button" id="tab-button-calculator" onclick="showTab('calculator')">
+				Calculator
+			</button>
+			<button class="tab-button" id="tab-button-overview" onclick="showTab('overview')">
+				Overview
+			</button>
+			<button class="tab-button" id="tab-button-average" onclick="showTab('average')">
+				Average
+			</button>
+			<button class="tab-button" id="tab-button-fractions" onclick="showTab('fractions')">
+				Fractions
+			</button>
+			<button class="tab-button" id="tab-button-root" onclick="showTab('root')">
+				Root
+			</button>
+			<button class="tab-button" id="tab-button-trigonometric-functions" onclick="showTab('trigonometric-functions')">
+				Trigonometric Functions
+			</button>
+		</div>
+		<div class="tab" id="tab-calculator">
+			<div id="calculator-container">
+				<div id="calculator-1">0</div>
+				<button onclick="calculatorButtonPress('clear')">C</button>
+				<button onclick="calculatorButtonPress('(')">(</button>
+				<button onclick="calculatorButtonPress(')')">)</button>
+				<button onclick="calculatorButtonPress('divide')">&divide;</button>
+				<button onclick="calculatorButtonPress('1')">1</button>
+				<button onclick="calculatorButtonPress('2')">2</button>
+				<button onclick="calculatorButtonPress('3')">3</button>
+				<button onclick="calculatorButtonPress('plus')">+</button>
+				<button onclick="calculatorButtonPress('4')">4</button>
+				<button onclick="calculatorButtonPress('5')">5</button>
+				<button onclick="calculatorButtonPress('6')">6</button>
+				<button onclick="calculatorButtonPress('minus')">-</button>
+				<button onclick="calculatorButtonPress('7')">7</button>
+				<button onclick="calculatorButtonPress('8')">8</button>
+				<button onclick="calculatorButtonPress('9')">9</button>
+				<button onclick="calculatorButtonPress('times')">&times;</button>
+				<button onclick="calculatorButtonPress('0')">0</button>
+				<button onclick="calculatorButtonPress('pi')">&#120587;</button>
+				<button onclick="runCommand()">=</button>
 			</div>
+		</div>
 		<div class="tab" id="tab-overview">
 			Number One: <input id="overview-1"><br>
 			Number Two: <input id="overview-2"><br>
@@ -42,6 +72,9 @@
 		<div class="tab" id="tab-root">
 			Number: <input id="root-1"><br>
 			Root (eg. 2 for Square Root, 3 for Cube Root): <input id="root-2"><br>
+		</div>
+		<div class="tab" id="tab-trigonometric-functions">
+			Angle: <input id="trigonometric-functions-1">
 		</div>
 		<button onclick="runCommand()">Calculate / Run Command</button>
 		<div id="results-container">
