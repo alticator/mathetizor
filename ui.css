@@ -29,6 +29,7 @@ h2 {margin: 20px;}
 #fractions-graphic {width: 20vw; height: 30px; background-color: lightgray; margin: auto;}
 #fractions-graphic-amount {height: 30px; background-color: rgb(0, 165, 210);}
 .checkbox {width: 30px; height: 30px; border: none; transition: 0.5s; cursor: pointer; font-size: 12px;}
+code {background-color: lightgray; border: 1px solid gray; font-family: monospace; padding: 3px; font-size: 14px; border-radius: 3px; color: black;}
 
 @keyframes fade-in {
 	from {opacity: 0;}

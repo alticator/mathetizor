@@ -90,7 +90,9 @@ function degreesRadiansToggle() {
 		$("#degreesRadiansToggle").css("background-color", "lightgray");
 		$("#degreesRadiansToggle").text("OFF");
 	}
-	runCommand();
+	if ($("#trigonometric-functions-1").val() != "") {
+		runCommand();
+	}
 }
 
 function runCommand() {
