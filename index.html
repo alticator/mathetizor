@@ -5,6 +5,7 @@
 			Alticator Mathetizor
 		</title>
 		<link rel="stylesheet" href="ui.css">
+		<meta charset="UTF-8">
 	</head>
 	<body>
 		<nav>
@@ -16,6 +17,9 @@
 			</button>
 			<button class="tab-button" id="tab-button-overview" onclick="showTab('overview')">
 				Overview
+			</button>
+			<button class="tab-button" id="tab-button-rounding" onclick="showTab('rounding')">
+				Rounding
 			</button>
 			<button class="tab-button" id="tab-button-average" onclick="showTab('average')">
 				Average
@@ -49,9 +53,13 @@
 				<button onclick="calculatorButtonPress('8')">8</button>
 				<button onclick="calculatorButtonPress('9')">9</button>
 				<button onclick="calculatorButtonPress('times')">&times;</button>
+				<button onclick="calculatorButtonPress('backspace')">←</button>
 				<button onclick="calculatorButtonPress('0')">0</button>
 				<button onclick="calculatorButtonPress('pi')">&#120587;</button>
 				<button onclick="runCommand()">=</button>
+			</div>
+			<div class="note">
+				You can calculate decimal calculations on the Overview tab.
 			</div>
 		</div>
 		<div class="tab" id="tab-overview">
@@ -65,6 +73,9 @@
 			</div>
 			<button onclick="averageAddInput()">Add Number</button>
 		</div>
+		<div class="tab" id="tab-rounding">
+			Decimal: <input id="rounding-1"><br>
+		</div>
 		<div class="tab" id="tab-fractions">
 			<div class="fraction"><input class="top" id="fractions-1" placeholder="Top"><input id="fractions-2" placeholder="Bottom"></div>
 			<div class="fraction"><input class="top" id="fractions-3" placeholder="Top"><input id="fractions-4" placeholder="Bottom"></div>
@@ -74,7 +85,8 @@
 			Root (eg. 2 for Square Root, 3 for Cube Root): <input id="root-2"><br>
 		</div>
 		<div class="tab" id="tab-trigonometric-functions">
-			Angle: <input id="trigonometric-functions-1">
+			Angle: <input id="trigonometric-functions-1"><br>
+			Use radians instead of degrees <button onclick="degreesRadiansToggle()" id="degreesRadiansToggle" class="checkbox" style="background-color: lightgray;">OFF</button>
 		</div>
 		<button onclick="runCommand()">Calculate / Run Command</button>
 		<div id="results-container">
