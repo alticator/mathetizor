@@ -61,12 +61,36 @@ function calculatorButtonPress(button) {
 		else if (button == "pi") {
 			calculatorCalculation += Math.PI;
 		}
+		else if (button == "backspace") {
+			if (calculatorCalculation.length > 1) {
+				calculatorCalculation = calculatorCalculation.substring(0, calculatorCalculation.length - 1);
+			}
+			else {
+				button = "clear";
+			}
+		}
 		$("#calculator-1").text(calculatorCalculation);
 		if (button == "clear") {
 			calculatorCalculation = "";
 			$("#calculator-1").text("0");
 		}
 	}
+}
+
+var inRadians = false;
+
+function degreesRadiansToggle() {
+	if (inRadians == false) {
+		inRadians = true;
+		$("#degreesRadiansToggle").css("background-color", "rgb(0, 210, 0)");
+		$("#degreesRadiansToggle").text("ON");
+	}
+	else if (inRadians) {
+		inRadians = false;
+		$("#degreesRadiansToggle").css("background-color", "lightgray");
+		$("#degreesRadiansToggle").text("OFF");
+	}
+	runCommand();
 }
 
 function runCommand() {
@@ -81,7 +105,8 @@ function runCommand() {
 		var quotient = ((numberOne * 1000000) / (numberTwo * 1000000));
 		var remainder = numberOne % numberTwo;
 		var exponentiation = Math.pow(numberOne, numberTwo);
-		$("#result").html("Sum: " + sum + line + "Difference: " + difference + line + "Product: " + product + line + "Quotient: " + quotient + line + "Remainder: " + remainder + line + "Number One to the power of Number Two: " + exponentiation + line + '<div class="note">Some calculations may not give entirely accurate results.</div>');
+		var percentage = numberOne * 100;
+		$("#result").html("Sum: " + sum + line + "Difference: " + difference + line + "Product: " + product + line + "Quotient: " + quotient + line + "Remainder: " + remainder + line + "Number One to the power of Number Two: " + exponentiation + line + "Number One in Percentage: " + percentage + "%" + line + '<div class="note">Some calculations may not give entirely accurate results.</div>');
 	}
 	else if (tab == "average") {
 		var numbers = [];
@@ -99,6 +124,13 @@ function runCommand() {
 		resultNumber = resultNumber / numbers.length;
 		$("#result").html("Average: " + resultNumber);
 	}
+	else if (tab == "rounding") {
+		var number = $("#rounding-1").val();
+		var round = Math.round(number);
+		var ceil = Math.ceil(number);
+		var floor = Math.floor(number);
+		$("#result").html("Rounded: " + round + line + "Ceiled: " + ceil + line + "Floored: " + floor);
+	}
 	else if (tab == "fractions") {
 		var fractionOne = {
 			numerator: convert($("#fractions-1").val()),
@@ -115,6 +147,7 @@ function runCommand() {
 		};
 		var quotient = '<sup>' + (fractionOne.numerator * reciprocal.numerator) + '</sup>&frasl;<sub>' + (fractionOne.denominator * reciprocal.denominator) + '</sub>';
 		var inDecimals = fractionOne.numerator / fractionOne.denominator;
+		var inPercentage = inDecimals * 100;
 		if (fractionOne.denominator != fractionTwo.denominator) {
 			fractionOne.numerator = fractionOne.numerator * fractionTwo.denominator;
 			fractionTwo.numerator = fractionTwo.numerator * fractionOne.denominator;
@@ -127,7 +160,7 @@ function runCommand() {
 		sum = '<sup>' + sum + '</sup>&frasl;<sub>' + fractionOne.denominator + '</sub>';
 		var difference = fractionOne.numerator - fractionTwo.numerator;
 		difference = '<sup>' + difference + '</sup>&frasl;<sub>' + fractionOne.denominator + '</sub>';
-		$("#result").html("Sum: " + sum + line + "Difference: " + difference + line + "Product: " + product + line + "Quotient: " + quotient + line + "Fraction One in Decimals: " + inDecimals + line + "Note: The fractions may not be in their simplest forms.");
+		$("#result").html("Sum: " + sum + line + "Difference: " + difference + line + "Product: " + product + line + "Quotient: " + quotient + line + "Fraction One in Decimals: " + inDecimals + line + "Fraction One in Percentage: " + inPercentage + "%" + line + "Number One Visual Presentation: " + '<div id="fractions-graphic">' + '<div id="fractions-graphic-amount" style="width: ' + (inDecimals * 100) + '%"></div></div>' + "Note: The fractions may not be in their simplest forms.");
 	}
 	else if (tab == "root") {
 		var numberOne = $("#root-1").val();
@@ -137,10 +170,16 @@ function runCommand() {
 	}
 	else if (tab == "trigonometric-functions") {
 		var angle = convert($("#trigonometric-functions-1").val());
+		if (inRadians == false) {
+			angle = angle * Math.PI / 180;
+		}
 		var sine = Math.sin(angle);
 		var cosine = Math.cos(angle);
+		if (angle == 90 * Math.PI / 180 && inRadians == false) {
+			cosine = 0;
+		}
 		var tangent = Math.tan(angle);
-		$("#result").html("Sine: " + sine + line + "Cosine: " + cosine + line + "Tangent: " + tangent + '<div class="note">Assuming the angle is given in radians.</div>');
+		$("#result").html("Sine: " + sine + line + "Cosine: " + cosine + line + "Tangent: " + tangent + '<div class="note">The results may not be accurate.</div>');
 	}
 	else if (tab == "calculator") {
 		var result = eval(calculatorCalculation);

@@ -22,10 +22,13 @@ input:focus {width: 50vw; box-shadow: 5px 5px 20px gray;}
 .fraction input {width: 100px; height: 5vh; box-sizing: border-box; margin: 0; background-color: white; color: black; text-align: center;}
 .fraction .top {border-bottom: 3px solid black;}
 h2 {margin: 20px;}
-.note {width: 30vw; margin: auto; padding: 3px; background-color: rgb(0, 165, 210); color: white; box-shadow: 3px 3px 10px gray; margin-top: 10px; margin-bottom: 5px;}
+.note {width: 30vw; margin: auto; padding: 3px; background-color: rgb(0, 165, 210); color: white; box-shadow: 3px 3px 10px gray; margin-top: 15px; margin-bottom: 5px; font-size: 24px;}
 #calculator-container {width: var(--calculator-width); box-shadow: 5px 5px 20px gray; background-color: rgb(0, 165, 210); margin: auto; box-sizing: border-box;}
 #calculator-container button {margin: 3px; padding: 5px; font-size: 36px; color: white; background-color: transparent; width: var(--calculator-button-width);}
-#calculator-1 {width: var(--calculator-width); font-size: 36px; padding: 5px; background-color: teal; box-shadow: 0px 0px 20px teal; margin: auto; text-align: right; color: white; box-sizing: border-box; overflow: auto;}
+#calculator-1 {width: var(--calculator-width); font-size: 36px; padding: 5px; background-color: teal; box-shadow: 0px 0px 20px gray; margin: auto; text-align: right; color: white; box-sizing: border-box; overflow: auto;}
+#fractions-graphic {width: 20vw; height: 30px; background-color: lightgray; margin: auto;}
+#fractions-graphic-amount {height: 30px; background-color: rgb(0, 165, 210);}
+.checkbox {width: 30px; height: 30px; border: none; transition: 0.5s; cursor: pointer; font-size: 12px;}
 
 @keyframes fade-in {
 	from {opacity: 0;}
