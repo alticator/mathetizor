@@ -95,6 +95,21 @@ function degreesRadiansToggle() {
 	}
 }
 
+var decimalBinary = 1;
+
+function decimalBinaryToggle() {
+	if (decimalBinary == 1) {
+		decimalBinary = 2;
+		$("#binary-2").css("background-color", "rgb(0, 210, 0)");
+		$("#binary-2").text("→");
+	}
+	else if (decimalBinary == 2) {
+		decimalBinary = 1;
+		$("#binary-2").css("background-color", "rgb(0, 165, 210)");
+		$("#binary-2").text("←");
+	}
+}
+
 function runCommand() {
 	if (tab == "overview") {
 		var numberOne = $("#overview-1").val();
@@ -162,7 +177,7 @@ function runCommand() {
 		sum = '<sup>' + sum + '</sup>&frasl;<sub>' + fractionOne.denominator + '</sub>';
 		var difference = fractionOne.numerator - fractionTwo.numerator;
 		difference = '<sup>' + difference + '</sup>&frasl;<sub>' + fractionOne.denominator + '</sub>';
-		$("#result").html("Sum: " + sum + line + "Difference: " + difference + line + "Product: " + product + line + "Quotient: " + quotient + line + "Fraction One in Decimals: " + inDecimals + line + "Fraction One in Percentage: " + inPercentage + "%" + line + "Number One Visual Presentation: " + '<div id="fractions-graphic">' + '<div id="fractions-graphic-amount" style="width: ' + (inDecimals * 100) + '%"></div></div>' + "Note: The fractions may not be in their simplest forms.");
+		$("#result").html("Sum: " + sum + line + "Difference: " + difference + line + "Product: " + product + line + "Quotient: " + quotient + line + "Fraction One in Decimals: " + inDecimals + line + "Fraction One in Percentage: " + inPercentage + "%" + line + "Number One Visual Presentation: " + '<div id="fractions-graphic">' + '<div id="fractions-graphic-amount" style="width: ' + (inDecimals * 100) + '%"></div></div>' + '<div class="note"> The fractions may not be in their simplest forms.</div>');
 	}
 	else if (tab == "root") {
 		var numberOne = $("#root-1").val();
@@ -187,6 +202,17 @@ function runCommand() {
 		var result = eval(calculatorCalculation);
 		calculatorCalculation = result;
 		$("#calculator-1").text(result);
+		$("#result").html(result);
+	}
+	else if (tab == "binary") {
+		var number = convert($("#binary-1").val());
+		var result;
+		if (decimalBinary == 1) {
+			result = number.toString(2);
+		}
+		else if (decimalBinary == 2) {
+			result = parseInt(number, 2);
+		}
 		$("#result").html(result);
 	}
 }

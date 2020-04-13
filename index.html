@@ -33,6 +33,9 @@
 			<button class="tab-button" id="tab-button-trigonometric-functions" onclick="showTab('trigonometric-functions')">
 				Trigonometric Functions
 			</button>
+			<button class="tab-button" id="tab-button-binary" onclick="showTab('binary')">
+				Binary
+			</button>
 		</div>
 		<div class="tab" id="tab-calculator">
 			<div id="calculator-container">
@@ -90,6 +93,10 @@
 		<div class="tab" id="tab-trigonometric-functions">
 			Angle: <input id="trigonometric-functions-1"><br>
 			Use radians instead of degrees <button onclick="degreesRadiansToggle()" id="degreesRadiansToggle" class="checkbox" style="background-color: lightgray;">OFF</button>
+		</div>
+		<div class="tab" id="tab-binary">
+			Number: <input id="binary-1"><br>
+			Decimal to Binary <button onclick="decimalBinaryToggle()" class="checkbox" id="binary-2">←</button> Binary to Decimal
 		</div>
 		<button onclick="runCommand()">Calculate / Run Command</button>
 		<div id="results-container">
