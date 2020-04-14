@@ -13,6 +13,10 @@ function keyPress(event) {
 	if (event.key == "Enter") {
 		runCommand();
 	}
+	else if (tab == "average" && event.key == "a") {
+		event.preventDefault();
+		averageAddInput();
+	}
 }
 
 var tab = "overview";
@@ -110,6 +114,21 @@ function decimalBinaryToggle() {
 	}
 }
 
+var overviewAlwaysPresent = false;
+
+function overviewAlwaysPresentToggle() {
+	if (overviewAlwaysPresent == false) {
+		overviewAlwaysPresent = true;
+		$("#overview-3").css("background-color", "rgb(0, 210, 0)");
+		$("#overview-3").text("ON");
+	}
+	else if (overviewAlwaysPresent == true) {
+		overviewAlwaysPresent = false;
+		$("#overview-3").css("background-color", "lightgray");
+		$("#overview-3").text("OFF");
+	}
+}
+
 function runCommand() {
 	if (tab == "overview") {
 		var numberOne = $("#overview-1").val();
@@ -123,7 +142,17 @@ function runCommand() {
 		var remainder = numberOne % numberTwo;
 		var exponentiation = Math.pow(numberOne, numberTwo);
 		var percentage = numberOne * 100;
-		$("#result").html("Sum: " + sum + line + "Difference: " + difference + line + "Product: " + product + line + "Quotient: " + quotient + line + "Remainder: " + remainder + line + "Number One to the power of Number Two: " + exponentiation + line + "Number One in Percentage: " + percentage + "%" + line + '<div class="note">Some calculations may not give entirely accurate results.</div>');
+		if (isBetween(numberOne, 0, 1000) || overviewAlwaysPresent) {
+			var visualDots = "";
+			for (var i = 0; i < Math.round(numberOne); i++) {
+				visualDots += ".";
+			}
+			var visual = "Number One Visual Presentation (rounded): " + line + '<div id="overview-graphic">' + visualDots + '</div>';
+		}
+		else {
+			visual = "";
+		}
+		$("#result").html("Sum: " + sum + line + "Difference: " + difference + line + "Product: " + product + line + "Quotient: " + quotient + line + "Remainder: " + remainder + line + "Number One to the power of Number Two: " + exponentiation + line + "Number One in Percentage: " + percentage + "%" + line + visual + '<div class="note">Some calculations may not give entirely accurate results.</div>');
 	}
 	else if (tab == "average") {
 		var numbers = [];
@@ -165,6 +194,13 @@ function runCommand() {
 		var quotient = '<sup>' + (fractionOne.numerator * reciprocal.numerator) + '</sup>&frasl;<sub>' + (fractionOne.denominator * reciprocal.denominator) + '</sub>';
 		var inDecimals = fractionOne.numerator / fractionOne.denominator;
 		var inPercentage = inDecimals * 100;
+		var visual;
+		if (fractionOne.numerator <= fractionOne.denominator) {
+			visual = "Fraction One Visual Presentation: " + line + '<div id="fractions-graphic"><div id="fractions-graphic-amount" style="width: ' + inPercentage + '%"></div></div>';
+		}
+		else {
+			visual = "";
+		}
 		if (fractionOne.denominator != fractionTwo.denominator) {
 			fractionOne.numerator = fractionOne.numerator * fractionTwo.denominator;
 			fractionTwo.numerator = fractionTwo.numerator * fractionOne.denominator;
@@ -177,7 +213,7 @@ function runCommand() {
 		sum = '<sup>' + sum + '</sup>&frasl;<sub>' + fractionOne.denominator + '</sub>';
 		var difference = fractionOne.numerator - fractionTwo.numerator;
 		difference = '<sup>' + difference + '</sup>&frasl;<sub>' + fractionOne.denominator + '</sub>';
-		$("#result").html("Sum: " + sum + line + "Difference: " + difference + line + "Product: " + product + line + "Quotient: " + quotient + line + "Fraction One in Decimals: " + inDecimals + line + "Fraction One in Percentage: " + inPercentage + "%" + line + "Number One Visual Presentation: " + '<div id="fractions-graphic">' + '<div id="fractions-graphic-amount" style="width: ' + (inDecimals * 100) + '%"></div></div>' + '<div class="note"> The fractions may not be in their simplest forms.</div>');
+		$("#result").html("Sum: " + sum + line + "Difference: " + difference + line + "Product: " + product + line + "Quotient: " + quotient + line + "Fraction One in Decimals: " + inDecimals + line + "Fraction One in Percentage: " + inPercentage + "%" + line + visual + line + '<div class="note">The fractions may not be in their simplest forms.</div>');
 	}
 	else if (tab == "root") {
 		var numberOne = $("#root-1").val();
@@ -213,6 +249,12 @@ function runCommand() {
 		else if (decimalBinary == 2) {
 			result = parseInt(number, 2);
 		}
+		$("#result").html(result);
+	}
+	else if (tab == "random") {
+		var minimum = convert($("#random-1").val());
+		var maximum = convert($("#random-2").val());
+		var result = Math.round(Math.random() * maximum) + minimum;
 		$("#result").html(result);
 	}
 }
