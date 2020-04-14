@@ -36,6 +36,9 @@
 			<button class="tab-button" id="tab-button-binary" onclick="showTab('binary')">
 				Binary
 			</button>
+			<button class="tab-button" id="tab-button-random" onclick="showTab('random')">
+				Random
+			</button>
 		</div>
 		<div class="tab" id="tab-calculator">
 			<div id="calculator-container">
@@ -71,11 +74,15 @@
 			<div class="note">
 				<b>Tip:</b> Try typing <code>pi()</code> or <code>exponentialGrowth()</code>
 			</div>
+			Show Visual Presentation for Numbers Over 1000 <button onclick="overviewAlwaysPresentToggle()" id="overview-3" class="checkbox" style="background-color: lightgray;">OFF</button>
 		</div>
 		<div class="tab" id="tab-average">
 			<div id="average-inputs">
 				Number One: <input id="average-1"><br>
 				Number Two: <input id="average-2"><br>
+			</div>
+			<div class="note">
+				<b>Tip:</b> You can also add numbers by pressing <code>a</code> on your keyboard.
 			</div>
 			<button onclick="averageAddInput()">Add Number</button>
 		</div>
@@ -97,6 +104,10 @@
 		<div class="tab" id="tab-binary">
 			Number: <input id="binary-1"><br>
 			Decimal to Binary <button onclick="decimalBinaryToggle()" class="checkbox" id="binary-2">←</button> Binary to Decimal
+		</div>
+		<div class="tab" id="tab-random">
+			Minimum: <input id="random-1"><br>
+			Maximum: <input id="random-2"><br>
 		</div>
 		<button onclick="runCommand()">Calculate / Run Command</button>
 		<div id="results-container">
