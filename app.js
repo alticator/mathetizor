@@ -13,9 +13,14 @@ function keyPress(event) {
 	if (event.key == "Enter") {
 		runCommand();
 	}
-	else if (tab == "average" && event.key == "a") {
+	else if (tab == "average" && event.key == ",") {
 		event.preventDefault();
-		averageAddInput();
+		if ($("#average-1").is(":focus")) {
+			document.getElementById("average-2").focus();
+		}
+		else {	
+			averageAddInput();
+		}
 	}
 }
 
@@ -27,8 +32,26 @@ function convert(number) {
 	if (number == "pi()") {
 		finalNumber = Math.PI;
 	}
-	else if (number == "exponentialGrowth()") {
+	else if (number == "E()") {
 		finalNumber = Math.E;
+	}
+	else if (number == "squareRoot(2)") {
+		finalNumber = Math.SQRT2;
+	}
+	else if (number == "squareRoot(1/2)") {
+		finalNumber = Math.SQRT1_2;
+	}
+	else if (number == "naturalLogarithm(2)") {
+		finalNumber = Math.LN2
+	}
+	else if (number == "naturalLogarithm(10)") {
+		finalNumber = Math.LN10;
+	}
+	else if (number == "base2Logarithm(E)") {
+		finalNumber = Math.LOG2E
+	}
+	else if (number == "base10Logarithm(E)") {
+		finalNumber = Math.LOG10E;
 	}
 	else {
 		finalNumber = parseFloat(number);
@@ -40,7 +63,7 @@ var averageNumberAmount = 2;
 
 function averageAddInput() {
 	averageNumberAmount++;
-	$("#average-inputs").append('<input id="average-' + averageNumberAmount + '"><br>');
+	$("#average-inputs").append('<input id="average-' + averageNumberAmount + '" autofocus><br>');
 }
 
 var calculatorCalculation = "";
@@ -142,7 +165,7 @@ function runCommand() {
 		var remainder = numberOne % numberTwo;
 		var exponentiation = Math.pow(numberOne, numberTwo);
 		var percentage = numberOne * 100;
-		if (isBetween(numberOne, 0, 1000) || overviewAlwaysPresent) {
+		if (isBetween(numberOne, 0, 1000) || (overviewAlwaysPresent && numberOne > 0)) {
 			var visualDots = "";
 			for (var i = 0; i < Math.round(numberOne); i++) {
 				visualDots += ".";
