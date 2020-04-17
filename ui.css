@@ -7,16 +7,19 @@
 	--calculator-button-width: calc(var(--calculator-width) / 5);
 }
 html, body {margin: 0;}
+* {transition: 0.5s}
 body {text-align: center; color: rgb(0, 165, 210); animation-name: slide-in; animation-duration: 0.5s; position: relative;}
 * {font-family: sans-serif;}
-nav {background-color: rgb(50, 50, 50); color: white; padding: 15px; font-size: 24px;}
+nav {background-color: #404050; color: white; padding: 15px; font-size: 24px; text-shadow: 0px 0px 10px aqua;}
 button, input {color: white; background-color: rgb(0, 165, 210); margin: 0; border: none; font-size: 14px; padding: 3px; outline: none; font-size: 24px; padding: 3px;}
+button {cursor: pointer;}
 #results-container {padding: 20px; margin: auto; margin-top: 5vh; margin-bottom: 5vh; font-size: 24px; box-shadow: 0px 0px 30px gray; width: 80vw;}
 input {width: 40vw; transition: 0.5s; margin: 3px;}
-input:focus {width: 50vw; box-shadow: 5px 5px 20px gray;}
+input:focus {width: 50vw; box-shadow: 5px 5px 20px darkslategray;}
 .tab {padding: 5px; margin: 10px; margin-top: 10vh; animation-name: fade-in; animation-duration: 0.5s;}
 #tab-bar {background-color: rgb(0, 165, 210); padding-top: 3px;}
 .tab-button {background-color: transparent; padding: 5px; transition: 0.5s; cursor: pointer;}
+.tab-button:hover {transform: skewX(-15deg);}
 .tab-selected {background-color: white; color: rgb(0, 165, 210);}
 .fraction {width: 100px; height: 10vh; box-shadow: 3px 3px 20px gray; margin: auto; margin-top: 10px;}
 .fraction input {width: 100px; height: 5vh; box-sizing: border-box; margin: 0; background-color: white; color: black; text-align: center;}
@@ -31,6 +34,7 @@ h2 {margin: 20px;}
 .checkbox {width: 30px; height: 30px; border: none; transition: 0.5s; cursor: pointer; font-size: 12px;}
 code {background-color: lightgray; border: 1px solid gray; font-family: monospace; padding: 3px; font-size: 14px; border-radius: 3px; color: black;}
 #overview-graphic {background-color: lightgray; color: rgb(0, 165, 210); padding: 3px; word-break: break-all; padding-bottom: 14px;}
+#dark-mode-button {position: absolute; right: 10px; background-color: transparent; padding: 0;}
 
 @keyframes fade-in {
 	from {transform: scale(0.5); opacity: 0;}
