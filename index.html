@@ -10,6 +10,7 @@
 	<body>
 		<nav>
 			Alticator Mathetizor
+			<button id="dark-mode-button" onclick="darkModeToggle()">Theme</button>
 		</nav>
 		<div id="tab-bar">
 			<button class="tab-button" id="tab-button-calculator" onclick="showTab('calculator')">
@@ -23,6 +24,9 @@
 			</button>
 			<button class="tab-button" id="tab-button-average" onclick="showTab('average')">
 				Average
+			</button>
+			<button class="tab-button" id="tab-button-percentage" onclick="showTab('percentage')">
+				Percentage
 			</button>
 			<button class="tab-button" id="tab-button-fractions" onclick="showTab('fractions')">
 				Fractions
@@ -46,23 +50,32 @@
 				<button onclick="calculatorButtonPress('clear')">C</button>
 				<button onclick="calculatorButtonPress('(')">(</button>
 				<button onclick="calculatorButtonPress(')')">)</button>
-				<button onclick="calculatorButtonPress('divide')">&divide;</button>
+				<button onclick="calculatorButtonPress('plus')">+</button>
 				<button onclick="calculatorButtonPress('1')">1</button>
 				<button onclick="calculatorButtonPress('2')">2</button>
 				<button onclick="calculatorButtonPress('3')">3</button>
-				<button onclick="calculatorButtonPress('plus')">+</button>
+				<button onclick="calculatorButtonPress('minus')">-</button>
 				<button onclick="calculatorButtonPress('4')">4</button>
 				<button onclick="calculatorButtonPress('5')">5</button>
 				<button onclick="calculatorButtonPress('6')">6</button>
-				<button onclick="calculatorButtonPress('minus')">-</button>
+				<button onclick="calculatorButtonPress('times')">&times;</button>
 				<button onclick="calculatorButtonPress('7')">7</button>
 				<button onclick="calculatorButtonPress('8')">8</button>
 				<button onclick="calculatorButtonPress('9')">9</button>
-				<button onclick="calculatorButtonPress('times')">&times;</button>
+				<button onclick="calculatorButtonPress('divide')">&divide;</button>
 				<button onclick="calculatorButtonPress('backspace')">←</button>
 				<button onclick="calculatorButtonPress('0')">0</button>
 				<button onclick="calculatorButtonPress('pi')">&#120587;</button>
 				<button onclick="runCommand()">=</button>
+			</div>
+			<div class="note">
+				You can also enter numbers on your keyboard.
+				To enter other signs, press:<br>
+				<code>q</code> for + <br>
+				<code>w</code> for - <br>
+				<code>e</code> for &times; <br>
+				<code>r</code> for &divide; <br>
+				<code>backspace</code> for backspace
 			</div>
 			<div class="note">
 				You can calculate decimal calculations on the Overview tab.
@@ -94,6 +107,11 @@
 			</div>
 			<button onclick="averageAddInput()">Add Number</button>
 		</div>
+		<div class="tab" id="tab-percentage">
+			Percentage: <input id="percentage-1"><br>
+			<p>of</p>
+			Number: <input id="percentage-2"><br>
+		</div>
 		<div class="tab" id="tab-rounding">
 			Decimal: <input id="rounding-1"><br>
 		</div>
@@ -117,7 +135,7 @@
 			Minimum: <input id="random-1"><br>
 			Maximum: <input id="random-2"><br>
 		</div>
-		<button onclick="runCommand()">Calculate / Run Command</button>
+		<a href="#result"><button onclick="runCommand()">Calculate / Run Command</button></a>
 		<div id="results-container">
 			<h2>Results</h2>
 			<div id="result">Press "Calculate / Run Command" or Enter to View</div>

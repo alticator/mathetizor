@@ -22,6 +22,34 @@ function keyPress(event) {
 			averageAddInput();
 		}
 	}
+	else if (tab == "calculator" && isBetween(event.keyCode, 48, 57)) {
+		calculatorCalculation += event.key;
+		$("#calculator-1").text(calculatorCalculation);
+	}
+	else if (tab == "calculator") {
+		if (event.key == "q") {
+			calculatorCalculation += " + ";
+		}
+		else if (event.key == "w") {
+			calculatorCalculation += " - ";
+		}
+		else if (event.key == "e") {
+			calculatorCalculation += " * ";
+		}
+		else if (event.key == "r") {
+			calculatorCalculation += " / ";
+		}
+		if (isBetween(event.keyCode, 48, 57) || event.key == "q" || event.key == "w" || event.key == "e" || event.key == "r") {
+			$("#calculator-1").text(calculatorCalculation);
+		}
+		if (event.key == "Backspace") {
+			calculatorButtonPress("backspace");
+		}
+		else if (event.key == "c") {
+			calculatorCalculation = "";
+			$("#calculator-1").text("0");
+		}
+	}
 }
 
 var tab = "overview";
@@ -101,6 +129,38 @@ function calculatorButtonPress(button) {
 			calculatorCalculation = "";
 			$("#calculator-1").text("0");
 		}
+	}
+}
+
+var darkMode = false;
+
+function darkModeToggle() {
+	if (darkMode == false) {
+		darkMode = true;
+		$(document.body).css("background-color", "#404050");
+		$(document.body).css("color", "white");
+		$("#results-container").css("background-color", "rgba(255, 255, 255, 0.5)");
+		$("#calculator-container").css("box-shadow", "none");
+		$("#calculator-1").css("box-shadow", "none");
+		$(".note").css("box-shadow", "none");
+		$("#results-container").css("box-shadow", "0px 0px 30px darkslategray");
+		$("#results-container").css("color", "white");
+		$("#tab-bar").css("padding", "5px");
+		$(".tab-button").css("border-radius", "5px");
+	}
+	else if (darkMode == true) {
+		darkMode = false;
+		$(document.body).css("background-color", "white");
+		$(document.body).css("color", "rgb(0, 165, 210)");
+		$("#results-container").css("background-color", "white");
+		$("#calculator-container").css("box-shadow", "0px 0px 30px gray");
+		$("#calculator-1").css("box-shadow", "0px 0px 20px gray");
+		$(".note").css("box-shadow", "0px 0px 10px gray");
+		$("#results-container").css("box-shadow", "0px 0px 30px gray");
+		$("#results-container").css("color", "rgb(0, 165, 210)");
+		$("#tab-bar").css("padding", "0");
+		$("#tab-bar").css("padding-top", "3px");
+		$(".tab-button").css("border-radius", "0");
 	}
 }
 
@@ -278,6 +338,12 @@ function runCommand() {
 		var minimum = convert($("#random-1").val());
 		var maximum = convert($("#random-2").val());
 		var result = Math.round(Math.random() * maximum) + minimum;
+		$("#result").html(result);
+	}
+	else if (tab == "percentage") {
+		var percentage = convert($("#percentage-1").val());
+		var number = convert($("#percentage-2").val());
+		var result = number * (percentage / 100);
 		$("#result").html(result);
 	}
 }
