@@ -39,7 +39,13 @@ function keyPress(event) {
 		else if (event.key == "r") {
 			calculatorCalculation += " / ";
 		}
-		if (isBetween(event.keyCode, 48, 57) || event.key == "q" || event.key == "w" || event.key == "e" || event.key == "r") {
+		else if (event.key == "t") {
+			calculatorCalculation += "(";
+		}
+		else if (event.key == "y") {
+			calculatorCalculation += ")";
+		}
+		if (isBetween(event.keyCode, 48, 57) || event.key == "q" || event.key == "w" || event.key == "e" || event.key == "r" || event.key == "t" || event.key == "y") {
 			$("#calculator-1").text(calculatorCalculation);
 		}
 		if (event.key == "Backspace") {
@@ -60,7 +66,7 @@ function convert(number) {
 	if (number == "pi()") {
 		finalNumber = Math.PI;
 	}
-	else if (number == "E()") {
+	else if (number == "e()") {
 		finalNumber = Math.E;
 	}
 	else if (number == "squareRoot(2)") {
@@ -75,10 +81,10 @@ function convert(number) {
 	else if (number == "naturalLogarithm(10)") {
 		finalNumber = Math.LN10;
 	}
-	else if (number == "base2Logarithm(E)") {
+	else if (number == "base2Logarithm(e)") {
 		finalNumber = Math.LOG2E
 	}
-	else if (number == "base10Logarithm(E)") {
+	else if (number == "base10Logarithm(e)") {
 		finalNumber = Math.LOG10E;
 	}
 	else {
@@ -139,28 +145,24 @@ function darkModeToggle() {
 		darkMode = true;
 		$(document.body).css("background-color", "#404050");
 		$(document.body).css("color", "white");
-		$("#results-container").css("background-color", "rgba(255, 255, 255, 0.5)");
+		$("#results-container").css("background-color", "#707080");
 		$("#calculator-container").css("box-shadow", "none");
 		$("#calculator-1").css("box-shadow", "none");
 		$(".note").css("box-shadow", "none");
 		$("#results-container").css("box-shadow", "0px 0px 30px darkslategray");
 		$("#results-container").css("color", "white");
-		$("#tab-bar").css("padding", "5px");
-		$(".tab-button").css("border-radius", "5px");
+		$("nav").css("border-bottom", "2px solid white");
+		$("#tab-bar").css("border-right", "2px solid white");
 	}
 	else if (darkMode == true) {
 		darkMode = false;
 		$(document.body).css("background-color", "white");
 		$(document.body).css("color", "rgb(0, 165, 210)");
 		$("#results-container").css("background-color", "white");
-		$("#calculator-container").css("box-shadow", "0px 0px 30px gray");
-		$("#calculator-1").css("box-shadow", "0px 0px 20px gray");
-		$(".note").css("box-shadow", "0px 0px 10px gray");
 		$("#results-container").css("box-shadow", "0px 0px 30px gray");
 		$("#results-container").css("color", "rgb(0, 165, 210)");
-		$("#tab-bar").css("padding", "0");
-		$("#tab-bar").css("padding-top", "3px");
-		$(".tab-button").css("border-radius", "0");
+		$("nav").css("border-bottom", "none");
+		$("#tab-bar").css("border-right", "none");
 	}
 }
 
@@ -341,9 +343,9 @@ function runCommand() {
 		$("#result").html(result);
 	}
 	else if (tab == "percentage") {
-		var percentage = convert($("#percentage-1").val());
-		var number = convert($("#percentage-2").val());
-		var result = number * (percentage / 100);
+		var percentage = convert($("#percentage-1").val()) * 1000000;
+		var number = convert($("#percentage-2").val()) * 1000000;
+		var result = number * (percentage / 100) / 1000000000000;
 		$("#result").html(result);
 	}
 }
@@ -354,6 +356,9 @@ function showTab(newTab) {
 	$(".tab-button").removeClass("tab-selected");
 	$("#tab-button-" + newTab).addClass("tab-selected");
 	$("#result").html("Press \"Calculate / Run Command\" or Enter to View");
+	var tabButton = eval("document.getElementById('tab-button-" + newTab + "')");
+	var positions = tabButton.getBoundingClientRect();
+	$("#indicator").css("top", positions.y - 60);
 	tab = newTab;
 }
 

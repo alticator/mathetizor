@@ -13,6 +13,7 @@
 			<button id="dark-mode-button" onclick="darkModeToggle()">Theme</button>
 		</nav>
 		<div id="tab-bar">
+			<div id="indicator"></div>
 			<button class="tab-button" id="tab-button-calculator" onclick="showTab('calculator')">
 				Calculator
 			</button>
@@ -44,101 +45,105 @@
 				Random
 			</button>
 		</div>
-		<div class="tab" id="tab-calculator">
-			<div id="calculator-container">
-				<div id="calculator-1">0</div>
-				<button onclick="calculatorButtonPress('clear')">C</button>
-				<button onclick="calculatorButtonPress('(')">(</button>
-				<button onclick="calculatorButtonPress(')')">)</button>
-				<button onclick="calculatorButtonPress('plus')">+</button>
-				<button onclick="calculatorButtonPress('1')">1</button>
-				<button onclick="calculatorButtonPress('2')">2</button>
-				<button onclick="calculatorButtonPress('3')">3</button>
-				<button onclick="calculatorButtonPress('minus')">-</button>
-				<button onclick="calculatorButtonPress('4')">4</button>
-				<button onclick="calculatorButtonPress('5')">5</button>
-				<button onclick="calculatorButtonPress('6')">6</button>
-				<button onclick="calculatorButtonPress('times')">&times;</button>
-				<button onclick="calculatorButtonPress('7')">7</button>
-				<button onclick="calculatorButtonPress('8')">8</button>
-				<button onclick="calculatorButtonPress('9')">9</button>
-				<button onclick="calculatorButtonPress('divide')">&divide;</button>
-				<button onclick="calculatorButtonPress('backspace')">←</button>
-				<button onclick="calculatorButtonPress('0')">0</button>
-				<button onclick="calculatorButtonPress('pi')">&#120587;</button>
-				<button onclick="runCommand()">=</button>
+		<div id="container">
+			<div class="tab" id="tab-calculator">
+				<div id="calculator-container">
+					<div id="calculator-1">0</div>
+					<button onclick="calculatorButtonPress('clear')">C</button>
+					<button onclick="calculatorButtonPress('(')">(</button>
+					<button onclick="calculatorButtonPress(')')">)</button>
+					<button onclick="calculatorButtonPress('plus')">+</button>
+					<button onclick="calculatorButtonPress('1')">1</button>
+					<button onclick="calculatorButtonPress('2')">2</button>
+					<button onclick="calculatorButtonPress('3')">3</button>
+					<button onclick="calculatorButtonPress('minus')">-</button>
+					<button onclick="calculatorButtonPress('4')">4</button>
+					<button onclick="calculatorButtonPress('5')">5</button>
+					<button onclick="calculatorButtonPress('6')">6</button>
+					<button onclick="calculatorButtonPress('times')">&times;</button>
+					<button onclick="calculatorButtonPress('7')">7</button>
+					<button onclick="calculatorButtonPress('8')">8</button>
+					<button onclick="calculatorButtonPress('9')">9</button>
+					<button onclick="calculatorButtonPress('divide')">&divide;</button>
+					<button onclick="calculatorButtonPress('backspace')">←</button>
+					<button onclick="calculatorButtonPress('0')">0</button>
+					<button onclick="calculatorButtonPress('pi')">&#120587;</button>
+					<button onclick="runCommand()">=</button>
+				</div>
+				<div class="note">
+					You can also enter numbers on your keyboard.
+					To enter other signs, press:<br>
+					<code>q</code> for + <br>
+					<code>w</code> for - <br>
+					<code>e</code> for &times; <br>
+					<code>r</code> for &divide; <br>
+					<code>t</code> for ( <br>
+					<code>y</code> for ) <br>
+					<code>← backspace</code> for backspace
+				</div>
+				<div class="note">
+					You can calculate decimal calculations on the Overview tab.
+				</div>
 			</div>
-			<div class="note">
-				You can also enter numbers on your keyboard.
-				To enter other signs, press:<br>
-				<code>q</code> for + <br>
-				<code>w</code> for - <br>
-				<code>e</code> for &times; <br>
-				<code>r</code> for &divide; <br>
-				<code>backspace</code> for backspace
+			<div class="tab" id="tab-overview">
+				Number One: <input id="overview-1"><br>
+				Number Two: <input id="overview-2"><br>
+				Show Visual Presentation for Numbers Over 1000 <button onclick="overviewAlwaysPresentToggle()" id="overview-3" class="checkbox" style="background-color: lightgray;">OFF</button>
+				<div class="note">
+					<b>Tip:</b> Try typing these to the number fields: <br>
+					<code>pi()</code><br>
+					<code>e()</code><br>
+					<code>squareRoot(2)</code> (Square Root of 2)<br>
+					<code>squareRoot(1/2)</code> (Square Root of 1/2)<br>
+					<code>naturalLogarithm(2)</code> (Natural Logarithm of 2)<br>
+					<code>naturalLogarithm(10)</code> (Natural Logarithm of 10)<br>
+					<code>base2Logarithm(e)</code> (Base 2 Logarithm of E)<br>
+					<code>base10Logarithm(e)</code> (Base 10 Logarithm of E)
+				</div>
 			</div>
-			<div class="note">
-				You can calculate decimal calculations on the Overview tab.
+			<div class="tab" id="tab-average">
+				<div id="average-inputs">
+					Number One: <input id="average-1"><br>
+					Number Two: <input id="average-2"><br>
+				</div>
+				<div class="note">
+					<b>Tip:</b> You can also move to the next input or add a new one by pressing <code>,</code> (comma) on your keyboard.
+				</div>
+				<button onclick="averageAddInput()">Add Number</button>
 			</div>
-		</div>
-		<div class="tab" id="tab-overview">
-			Number One: <input id="overview-1"><br>
-			Number Two: <input id="overview-2"><br>
-			Show Visual Presentation for Numbers Over 1000 <button onclick="overviewAlwaysPresentToggle()" id="overview-3" class="checkbox" style="background-color: lightgray;">OFF</button>
-			<div class="note">
-				<b>Tip:</b> Try typing these to the number fields: <br>
-				<code>pi()</code><br>
-				<code>E()</code><br>
-				<code>squareRoot(2)</code> (Square Root of 2)<br>
-				<code>squareRoot(1/2)</code> (Square Root of 1/2)<br>
-				<code>naturalLogarithm(2)</code> (Natural Logarithm of 2)<br>
-				<code>naturalLogarithm(10)</code> (Natural Logarithm of 10)<br>
-				<code>base2Logarithm(E)</code> (Base 2 Logarithm of E)<br>
-				<code>base10Logarithm(E)</code> (Base 10 Logarithm of E)
+			<div class="tab" id="tab-percentage">
+				Percentage: <input id="percentage-1"><br>
+				<p>of</p>
+				Number: <input id="percentage-2"><br>
 			</div>
-		</div>
-		<div class="tab" id="tab-average">
-			<div id="average-inputs">
-				Number One: <input id="average-1"><br>
-				Number Two: <input id="average-2"><br>
+			<div class="tab" id="tab-rounding">
+				Decimal: <input id="rounding-1"><br>
 			</div>
-			<div class="note">
-				<b>Tip:</b> You can also move to the next input or add a new one by pressing <code>,</code> (comma) on your keyboard.
+			<div class="tab" id="tab-fractions">
+				<div class="fraction"><input class="top" id="fractions-1" placeholder="Top"><input id="fractions-2" placeholder="Bottom"></div>
+				<div class="fraction"><input class="top" id="fractions-3" placeholder="Top"><input id="fractions-4" placeholder="Bottom"></div>
 			</div>
-			<button onclick="averageAddInput()">Add Number</button>
-		</div>
-		<div class="tab" id="tab-percentage">
-			Percentage: <input id="percentage-1"><br>
-			<p>of</p>
-			Number: <input id="percentage-2"><br>
-		</div>
-		<div class="tab" id="tab-rounding">
-			Decimal: <input id="rounding-1"><br>
-		</div>
-		<div class="tab" id="tab-fractions">
-			<div class="fraction"><input class="top" id="fractions-1" placeholder="Top"><input id="fractions-2" placeholder="Bottom"></div>
-			<div class="fraction"><input class="top" id="fractions-3" placeholder="Top"><input id="fractions-4" placeholder="Bottom"></div>
-		</div>
-		<div class="tab" id="tab-root">
-			Number: <input id="root-1"><br>
-			Root (eg. 2 for Square Root, 3 for Cube Root): <input id="root-2"><br>
-		</div>
-		<div class="tab" id="tab-trigonometric-functions">
-			Angle: <input id="trigonometric-functions-1"><br>
-			Use radians instead of degrees <button onclick="degreesRadiansToggle()" id="degreesRadiansToggle" class="checkbox" style="background-color: lightgray;">OFF</button>
-		</div>
-		<div class="tab" id="tab-binary">
-			Number: <input id="binary-1"><br>
-			Decimal to Binary <button onclick="decimalBinaryToggle()" class="checkbox" id="binary-2">←</button> Binary to Decimal
-		</div>
-		<div class="tab" id="tab-random">
-			Minimum: <input id="random-1"><br>
-			Maximum: <input id="random-2"><br>
-		</div>
-		<a href="#result"><button onclick="runCommand()">Calculate / Run Command</button></a>
-		<div id="results-container">
-			<h2>Results</h2>
-			<div id="result">Press "Calculate / Run Command" or Enter to View</div>
+			<div class="tab" id="tab-root">
+				Number: <input id="root-1"><br>
+				Root (eg. 2 for Square Root, 3 for Cube Root): <input id="root-2"><br>
+			</div>
+			<div class="tab" id="tab-trigonometric-functions">
+				Angle: <input id="trigonometric-functions-1"><br>
+				Use radians instead of degrees <button onclick="degreesRadiansToggle()" id="degreesRadiansToggle" class="checkbox" style="background-color: lightgray;">OFF</button>
+			</div>
+			<div class="tab" id="tab-binary">
+				Number: <input id="binary-1"><br>
+				Decimal to Binary <button onclick="decimalBinaryToggle()" class="checkbox" id="binary-2">←</button> Binary to Decimal
+			</div>
+			<div class="tab" id="tab-random">
+				Minimum: <input id="random-1"><br>
+				Maximum: <input id="random-2"><br>
+			</div>
+			<a href="#result"><button onclick="runCommand()">Calculate / Run Command</button></a>
+			<div id="results-container">
+				<h2>Results</h2>
+				<div id="result">Press "Calculate / Run Command" or Enter to View</div>
+			</div>
 		</div>
 		<script src="jquery-3.4.1.min.js"></script>
 		<script src="app.js"></script>
