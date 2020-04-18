@@ -10,25 +10,25 @@ html, body {margin: 0;}
 * {transition: 0.5s}
 body {text-align: center; color: rgb(0, 165, 210); animation-name: slide-in; animation-duration: 0.5s; position: relative;}
 * {font-family: sans-serif;}
-nav {background-color: #404050; color: white; padding: 15px; font-size: 24px; text-shadow: 0px 0px 10px aqua;}
-button, input {color: white; background-color: rgb(0, 165, 210); margin: 0; border: none; font-size: 14px; padding: 3px; outline: none; font-size: 24px; padding: 3px;}
+nav {background-color: #404050; color: white; padding: 15px; font-size: 24px; text-shadow: 0px 0px 10px aqua; position: sticky; top: 0; height: 60px; box-sizing: border-box;}
+button, input {color: white; background-color: rgb(0, 165, 210); margin: 0; border: none; padding: 3px; outline: none; font-size: 24px; padding: 3px;}
 button {cursor: pointer;}
 #results-container {padding: 20px; margin: auto; margin-top: 5vh; margin-bottom: 5vh; font-size: 24px; box-shadow: 0px 0px 30px gray; width: 80vw;}
 input {width: 40vw; transition: 0.5s; margin: 3px;}
 input:focus {width: 50vw; box-shadow: 5px 5px 20px darkslategray;}
 .tab {padding: 5px; margin: 10px; margin-top: 10vh; animation-name: fade-in; animation-duration: 0.5s;}
-#tab-bar {background-color: rgb(0, 165, 210); padding-top: 3px;}
-.tab-button {background-color: transparent; padding: 5px; transition: 0.5s; cursor: pointer;}
-.tab-button:hover {transform: skewX(-15deg);}
-.tab-selected {background-color: white; color: rgb(0, 165, 210);}
+#tab-bar {background-color: #404050; position: fixed; width: 200px; height: 100vh; box-sizing: border-box;}
+.tab-button {background-color: transparent; padding: 5px; cursor: pointer; width: 100%; box-sizing: border-box;}
+#indicator {width: 5px; height: 38px; position: absolute; left: 0; top: 0; background-color: rgb(0, 165, 210);}
+#container {margin-left: 200px;}
 .fraction {width: 100px; height: 10vh; box-shadow: 3px 3px 20px gray; margin: auto; margin-top: 10px;}
 .fraction input {width: 100px; height: 5vh; box-sizing: border-box; margin: 0; background-color: white; color: black; text-align: center;}
 .fraction .top {border-bottom: 3px solid black;}
 h2 {margin: 20px;}
-.note {width: 30vw; margin: auto; padding: 3px; background-color: rgb(0, 165, 210); color: white; box-shadow: 3px 3px 10px gray; margin-top: 15px; margin-bottom: 5px; font-size: 24px;}
-#calculator-container {width: var(--calculator-width); box-shadow: 5px 5px 20px gray; background-color: rgb(0, 165, 210); margin: auto; box-sizing: border-box; cursor: pointer;}
+.note {width: 75vw; margin: auto; padding: 5px; background-color: rgb(0, 165, 210); color: white; margin-top: 15px; margin-bottom: 5px; font-size: 24px; box-sizing: border-box;}
+#calculator-container {width: var(--calculator-width); background-color: rgb(0, 165, 210); margin: auto; box-sizing: border-box; cursor: pointer;}
 #calculator-container button {margin: 3px; padding: 5px; font-size: 36px; color: white; background-color: transparent; width: var(--calculator-button-width); cursor: pointer;}
-#calculator-1 {width: var(--calculator-width); font-size: 36px; padding: 5px; background-color: teal; box-shadow: 0px 0px 20px gray; margin: auto; text-align: right; color: white; box-sizing: border-box; overflow: auto; cursor: default;}
+#calculator-1 {width: var(--calculator-width); font-size: 36px; padding: 5px; background-color: teal; margin: auto; text-align: right; color: white; box-sizing: border-box; overflow: auto; cursor: default; min-height: 46px;}
 #fractions-graphic {width: 20vw; height: 30px; background-color: lightgray; margin: auto;}
 #fractions-graphic-amount {height: 30px; background-color: rgb(0, 165, 210);}
 .checkbox {width: 30px; height: 30px; border: none; transition: 0.5s; cursor: pointer; font-size: 12px;}
