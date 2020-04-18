@@ -29,6 +29,9 @@
 			<button class="tab-button" id="tab-button-trigonometric-functions" onclick="showTab('trigonometric-functions')">
 				Trigonometric Functions
 			</button>
+            <button class="tab-button" id="tab-button-console" onclick="showTab('console', this)">
+                Console
+            </button>
 		</div>
 		<div class="tab" id="tab-calculator">
 			<div id="calculator-container">
@@ -52,7 +55,7 @@
 				<button onclick="calculatorButtonPress('0')">0</button>
 				<button onclick="calculatorButtonPress('pi')">&#120587;</button>
 				<button onclick="runCommand()">=</button>
-			</div>
+            </div>
 		</div>
 		<div class="tab" id="tab-overview">
 			Number One: <input id="overview-1"><br>
@@ -76,11 +79,15 @@
 		<div class="tab" id="tab-trigonometric-functions">
 			Angle: <input id="trigonometric-functions-1">
 		</div>
+        <div class="tab" id="tab-console">
+			Enter Command: <input id="console-1"><br>
+		</div>
 		<button onclick="runCommand()">Calculate / Run Command</button>
 		<div id="results-container">
 			<h2>Results</h2>
 			<div id="result">Press "Calculate / Run Command" or Enter to View</div>
 		</div>
+
 		<script src="jquery-3.4.1.min.js"></script>
 		<script src="app.js"></script>
 	</body>
