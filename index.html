@@ -41,8 +41,14 @@
 			<button class="tab-button" id="tab-button-binary" onclick="showTab('binary')">
 				Binary
 			</button>
+			<button class="tab-button" id="tab-button-octal" onclick="showTab('octal')">
+				Octal
+			</button>
 			<button class="tab-button" id="tab-button-random" onclick="showTab('random')">
 				Random
+			</button>
+			<button class="tab-button" id="tab-button-logarithm" onclick="showTab('logarithm')">
+				Logarithm
 			</button>
 		</div>
 		<div id="container">
@@ -135,9 +141,17 @@
 				Number: <input id="binary-1"><br>
 				Decimal to Binary <button onclick="decimalBinaryToggle()" class="checkbox" id="binary-2">←</button> Binary to Decimal
 			</div>
+			<div class="tab" id="tab-octal">
+				Number: <input id="octal-1"><br>
+				Decimal to Octal <button onclick="decimalOctalToggle()" class="checkbox" id="octal-2">←</button> Binary to Octal
+			</div>
 			<div class="tab" id="tab-random">
 				Minimum: <input id="random-1"><br>
 				Maximum: <input id="random-2"><br>
+			</div>
+			<div class="tab" id="tab-logarithm">
+				Base (<code>e()</code> for Natural Logarithm): <input id="logarithm-1"><br>
+				Number: <input id="logarithm-2"><br>
 			</div>
 			<a href="#result"><button onclick="runCommand()">Calculate / Run Command</button></a>
 			<div id="results-container">
