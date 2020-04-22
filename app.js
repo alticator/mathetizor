@@ -199,6 +199,21 @@ function decimalBinaryToggle() {
 	}
 }
 
+var decimalOctal = 1;
+
+function decimalOctalToggle() {
+	if (decimalOctal == 1) {
+		decimalOctal = 2;
+		$("#octal-2").css("background-color", "rgb(0, 210, 0)");
+		$("#octal-2").text("→");
+	}
+	else if (decimalOctal == 2) {
+		decimalOctal = 1;
+		$("#octal-2").css("background-color", "rgb(0, 165, 210)");
+		$("#octal-2").text("←");
+	}
+}
+
 var overviewAlwaysPresent = false;
 
 function overviewAlwaysPresentToggle() {
@@ -336,6 +351,17 @@ function runCommand() {
 		}
 		$("#result").html(result);
 	}
+	else if (tab == "octal") {
+		var number = convert($("#octal-1").val());
+		var result;
+		if (decimalOctal == 1) {
+			result = number.toString(8);
+		}
+		else if (decimalOctal == 2) {
+			result = parseInt(number, 8);
+		}
+		$("#result").html(result);
+	}
 	else if (tab == "random") {
 		var minimum = convert($("#random-1").val());
 		var maximum = convert($("#random-2").val());
@@ -347,6 +373,12 @@ function runCommand() {
 		var number = convert($("#percentage-2").val()) * 1000000;
 		var result = number * (percentage / 100) / 1000000000000;
 		$("#result").html(result);
+	}
+	else if (tab == "logarithm") {
+		var base = convert($("#logarithm-1").val());
+		var number = convert($("#logarithm-2").val());
+		var result = Math.log(number) / Math.log(base);
+		$("#result").html(result.toString() + '<div class="note">Some results may not be accurate</div>');
 	}
 }
 
