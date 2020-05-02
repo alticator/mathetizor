@@ -8,6 +8,71 @@
 		<meta charset="UTF-8">
 	</head>
 	<body>
+		<div class="modal-container" style="display: none;">
+			<div class="modal">
+				<button onclick="closeModal()" class="close">&times;</button>
+				<div class="modal-content" id="content-paint-rectangle" style="display: none;">
+					<h3>
+						Create Rectangle
+					</h3>
+					ID (eg. myRectangle):<br> <input id="paint-modal-rectangle-1"><br>
+					X (0 - 100):<br> <input id="paint-modal-rectangle-2"><br>
+					Y (0 - 100):<br> <input id="paint-modal-rectangle-3"><br>
+					Width (0 - 100):<br> <input id="paint-modal-rectangle-4"><br>
+					Height (0 - 100):<br> <input id="paint-modal-rectangle-5"><br>
+					Color (eg. black, #FFFFFF or rgba(0, 0, 0, 0,5)):<br> <input id="paint-modal-rectangle-6"><br>
+					<button onclick="paintCreateRectangle()">OK</button>
+				</div>
+				<div class="modal-content" id="content-paint-ellipse" style="display: none;">
+					<h3>
+						Create Ellipse
+					</h3>
+					ID (eg. myEllipse):<br> <input id="paint-modal-ellipse-1"><br>
+					X (0 - 100):<br> <input id="paint-modal-ellipse-2"><br>
+					Y (0 - 100):<br> <input id="paint-modal-ellipse-3"><br>
+					Width (0 - 100):<br> <input id="paint-modal-ellipse-4"><br>
+					Height (0 - 100):<br> <input id="paint-modal-ellipse-5"><br>
+					Color (eg. black, #FFFFFF or rgba(0, 0, 0, 0,5)):<br> <input id="paint-modal-ellipse-6"><br>
+					<button onclick="paintCreateEllipse()">OK</button>
+				</div>
+				<div class="modal-content" id="content-paint-border" style="display: none;">
+					<h3>
+						Edit Border
+					</h3>
+					Object ID to Edit the Border for:<br> <input id="paint-modal-border-1"><br>
+					Border Thickness (pixels, eg. 10):<br> <input id="paint-modal-border-2"><br>
+					Border Color (eg. black, #FFFFFF or rgba(0, 0, 0, 0,5)):<br> <input id="paint-modal-border-3"><br>
+					Border Type (eg. solid, dotted, dashed, double, groove, ridge, inset, outset or a mix: eg. dotted dashed solid double):<br> <input id="paint-modal-border-4"><br>
+					<button onclick="paintEditBorder()">OK</button>
+				</div>
+				<div class="modal-content" id="content-paint-edit" style="display: none;">
+					<h3>
+						Edit Shape
+					</h3>
+					ID for the Object to Edit:<br> <input id="paint-modal-edit-1"><br>
+					New X (0 - 100):<br> <input id="paint-modal-edit-2"><br>
+					New Y (0 - 100):<br> <input id="paint-modal-edit-3"><br>
+					New Width (0 - 100):<br> <input id="paint-modal-edit-4"><br>
+					New Height (0 - 100):<br> <input id="paint-modal-edit-5"><br>
+					New Color (eg. black, #FFFFFF or rgba(0, 0, 0, 0.5)):<br> <input id="paint-modal-edit-6"><br>
+					<button onclick="paintEditShape()">OK</button>
+				</div>
+				<div class="modal-content" id="content-paint-clear" style="display: none;">
+					<h3>
+						Clear Canvas
+					</h3>
+					<p>
+						Are you sure you want to clear the canvas and delete the drawing?
+					</p>
+					<button onclick="closeModal()">
+						No, Do Not Delete
+					</button>
+					<button onclick="paintClearCanvas()">
+						Yes
+					</button>
+				</div>
+			</div>
+		</div>
 		<nav>
 			Alticator Mathetizor
 			<button id="dark-mode-button" onclick="darkModeToggle()">Theme</button>
@@ -19,6 +84,9 @@
 			</button>
 			<button class="tab-button" id="tab-button-overview" onclick="showTab('overview')">
 				Overview
+			</button>
+			<button class="tab-button" id="tab-button-paint" onclick="showTab('paint')">
+				Paint
 			</button>
 			<button class="tab-button" id="tab-button-rounding" onclick="showTab('rounding')">
 				Rounding
@@ -106,6 +174,26 @@
 					<code>base2Logarithm(e)</code> (Base 2 Logarithm of E)<br>
 					<code>base10Logarithm(e)</code> (Base 10 Logarithm of E)
 				</div>
+			</div>
+			<div class="tab" id="tab-paint">
+				<div id="paint-toolbar">
+					<button onclick="openModalFor('paint', 'rectangle')">
+						Create Rectangle
+					</button>
+					<button onclick="openModalFor('paint', 'ellipse')">
+						Create Ellipse
+					</button>
+					<button onclick="openModalFor('paint', 'border')">
+						Edit Border
+					</button>
+					<button onclick="openModalFor('paint', 'edit')">
+						Edit Shape
+					</button>
+					<button onclick="openModalFor('paint', 'clear')">
+						Clear Canvas
+					</button>
+				</div>
+				<div id="drawing"></div>
 			</div>
 			<div class="tab" id="tab-average">
 				<div id="average-inputs">

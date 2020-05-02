@@ -151,8 +151,10 @@ function darkModeToggle() {
 		$(".note").css("box-shadow", "none");
 		$("#results-container").css("box-shadow", "0px 0px 30px darkslategray");
 		$("#results-container").css("color", "white");
+		$("#paint-toolbar").css("background-color", "#707080");
 		$("nav").css("border-bottom", "2px solid white");
 		$("#tab-bar").css("border-right", "2px solid white");
+		$(".modal").css("background-color", "#404050");
 	}
 	else if (darkMode == true) {
 		darkMode = false;
@@ -161,8 +163,10 @@ function darkModeToggle() {
 		$("#results-container").css("background-color", "white");
 		$("#results-container").css("box-shadow", "0px 0px 30px gray");
 		$("#results-container").css("color", "rgb(0, 165, 210)");
+		$("#paint-toolbar").css("background-color", "#404050");
 		$("nav").css("border-bottom", "none");
 		$("#tab-bar").css("border-right", "none");
+		$(".modal").css("background-color", "white");
 	}
 }
 
@@ -227,6 +231,78 @@ function overviewAlwaysPresentToggle() {
 		$("#overview-3").css("background-color", "lightgray");
 		$("#overview-3").text("OFF");
 	}
+}
+
+function openModalFor(tab, content) {
+	$(".modal-container").show();
+	$("#content-" + tab + "-" + content).show();
+}
+
+function closeModal() {
+	$(".modal-container").hide();
+	$(".modal-content").hide();
+}
+
+var objectCount = 0;
+
+function paintCreateRectangle() {
+	objectCount++;
+	var prefix = "#paint-modal-rectangle-";
+	var id = $(prefix + "1").val();
+	var x = $(prefix + "2").val();
+	var y = $(prefix + "3").val();
+	var width = $(prefix + "4").val();
+	var height = $(prefix + "5").val();
+	var color = $(prefix + "6").val();
+	closeModal();
+	$("#drawing").append('<div id="drawing-' + id + '" style="position: absolute; width: ' + width + '%; height: ' + height + '%; left: ' + x + '%; top: ' + y + '%; background-color: ' + color + ';"></div>');
+}
+
+function paintEditShape() {
+	objectCount++;
+	var prefix = "#paint-modal-edit-";
+	var id = $(prefix + "1").val();
+	var x = $(prefix + "2").val();
+	var y = $(prefix + "3").val();
+	var width = $(prefix + "4").val();
+	var height = $(prefix + "5").val();
+	var color = $(prefix + "6").val();
+	closeModal();
+	$("#drawing-" + id).css("left", x + "%");
+	$("#drawing-" + id).css("top", y + "%");
+	$("#drawing-" + id).css("width", width + "%");
+	$("#drawing-" + id).css("height", height + "%");
+	$("#drawing-" + id).css("background-color", color);
+}
+
+function paintCreateEllipse() {
+	objectCount++;
+	var prefix = "#paint-modal-ellipse-";
+	var id = $(prefix + "1").val();
+	var x = $(prefix + "2").val();
+	var y = $(prefix + "3").val();
+	var width = $(prefix + "4").val();
+	var height = $(prefix + "5").val();
+	var color = $(prefix + "6").val();
+	closeModal();
+	$("#drawing").append('<div id="drawing-' + id + '" style="position: absolute; width: ' + width + '%; height: ' + height + '%; left: ' + x + '%; top: ' + y + '%; background-color: ' + color + '; border-radius: 50%;"></div>');
+}
+
+function paintEditBorder() {
+	var prefix = "#paint-modal-border-";
+	var id = $(prefix + "1").val();
+	var thickness = $(prefix + "2").val();
+	var color = $(prefix + "3").val();
+	var type = $(prefix + "4").val();
+	closeModal();
+	$("#drawing-" + id).css("border-style", type);
+	$("#drawing-" + id).css("border-width", thickness + "px");
+	$("#drawing-" + id).css("border-color", color);
+}
+
+function paintClearCanvas() {
+	$("#drawing").html("");
+	closeModal();
 }
 
 function runCommand() {
