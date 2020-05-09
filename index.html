@@ -21,7 +21,7 @@
 					Width (0 - 100):<br> <input id="paint-modal-rectangle-4"><br>
 					Height (0 - 100):<br> <input id="paint-modal-rectangle-5"><br>
 					Color (eg. black, #FFFFFF or rgba(0, 0, 0, 0,5)):<br> <input id="paint-modal-rectangle-6"><br>
-					<button onclick="paintCreateRectangle()">OK</button>
+					<button onclick="paintCreateRectangle()">Apply</button>
 				</div>
 				<div class="modal-content" id="content-paint-ellipse" style="display: none;">
 					<h3>
@@ -33,7 +33,7 @@
 					Width (0 - 100):<br> <input id="paint-modal-ellipse-4"><br>
 					Height (0 - 100):<br> <input id="paint-modal-ellipse-5"><br>
 					Color (eg. black, #FFFFFF or rgba(0, 0, 0, 0,5)):<br> <input id="paint-modal-ellipse-6"><br>
-					<button onclick="paintCreateEllipse()">OK</button>
+					<button onclick="paintCreateEllipse()">Apply</button>
 				</div>
 				<div class="modal-content" id="content-paint-border" style="display: none;">
 					<h3>
@@ -43,7 +43,7 @@
 					Border Thickness (pixels, eg. 10):<br> <input id="paint-modal-border-2"><br>
 					Border Color (eg. black, #FFFFFF or rgba(0, 0, 0, 0,5)):<br> <input id="paint-modal-border-3"><br>
 					Border Type (eg. solid, dotted, dashed, double, groove, ridge, inset, outset or a mix: eg. dotted dashed solid double):<br> <input id="paint-modal-border-4"><br>
-					<button onclick="paintEditBorder()">OK</button>
+					<button onclick="paintEditBorder()">Apply</button>
 				</div>
 				<div class="modal-content" id="content-paint-edit" style="display: none;">
 					<h3>
@@ -55,7 +55,16 @@
 					New Width (0 - 100):<br> <input id="paint-modal-edit-4"><br>
 					New Height (0 - 100):<br> <input id="paint-modal-edit-5"><br>
 					New Color (eg. black, #FFFFFF or rgba(0, 0, 0, 0.5)):<br> <input id="paint-modal-edit-6"><br>
-					<button onclick="paintEditShape()">OK</button>
+					<button onclick="paintEditShape()">Apply</button>
+				</div>
+				<div class="modal-content" id="content-paint-perspective" style="display: none;">
+					<h3>
+						Perspective and Tilt
+					</h3>
+					ID for the Object to Edit:<br> <input id="paint-modal-perspective-1"><br>
+					X Rotation:<br> <input id="paint-modal-perspective-2"><br>
+					Y Rotation:<br> <input id="paint-modal-perspective-3"><br>
+					<button onclick="paintPerspective()">Apply</button>
 				</div>
 				<div class="modal-content" id="content-paint-clear" style="display: none;">
 					<h3>
@@ -71,10 +80,20 @@
 						Yes
 					</button>
 				</div>
+				<div class="modal-content" id="content-paint-canvas" style="display: none;">
+					<h3>
+						Canvas Preferences
+					</h3>
+					New Width (pixels, default is 500):<br> <input id="paint-modal-canvas-1"><br>
+					New Height (pixels, default is 500):<br> <input id="paint-modal-canvas-2"><br>
+					<button onclick="paintResizeCanvas()">Resize Canvas</button><br><br>
+					Canvas Border <button onclick="paintToggleBorder()" id="paint-modal-canvas-3" class="checkbox" style="background-color: rgb(0, 210, 0)">ON</button>
+				</div>
 			</div>
 		</div>
 		<nav>
 			Alticator Mathetizor
+			<button id="font-button" onclick="fontToggle()">Font</button>
 			<button id="dark-mode-button" onclick="darkModeToggle()">Theme</button>
 		</nav>
 		<div id="tab-bar">
@@ -189,8 +208,14 @@
 					<button onclick="openModalFor('paint', 'edit')">
 						Edit Shape
 					</button>
+					<button onclick="openModalFor('paint', 'perspective')">
+						Perspective and Tilt
+					</button>
 					<button onclick="openModalFor('paint', 'clear')">
 						Clear Canvas
+					</button>
+					<button onclick="openModalFor('paint', 'canvas')">
+						Canvas Preferences
 					</button>
 				</div>
 				<div id="drawing"></div>
@@ -231,7 +256,7 @@
 			</div>
 			<div class="tab" id="tab-octal">
 				Number: <input id="octal-1"><br>
-				Decimal to Octal <button onclick="decimalOctalToggle()" class="checkbox" id="octal-2">←</button> Binary to Octal
+				Decimal to Octal <button onclick="decimalOctalToggle()" class="checkbox" id="octal-2">←</button> Octal to Decimal
 			</div>
 			<div class="tab" id="tab-random">
 				Minimum: <input id="random-1"><br>
