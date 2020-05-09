@@ -275,6 +275,15 @@ function paintEditShape() {
 	$("#drawing-" + id).css("background-color", color);
 }
 
+function paintPerspective() {
+	var prefix = "#paint-modal-perspective-";
+	var id = $(prefix + "1").val();
+	var rotationX = $(prefix + "2").val();
+	var rotationY = $(prefix + "3").val();
+	closeModal();
+	$("#drawing-" + id).css("transform", "rotateX(" + rotationX + "deg) rotateY(" + rotationY + "deg)");
+}
+
 function paintCreateEllipse() {
 	objectCount++;
 	var prefix = "#paint-modal-ellipse-";
@@ -303,6 +312,43 @@ function paintEditBorder() {
 function paintClearCanvas() {
 	$("#drawing").html("");
 	closeModal();
+}
+
+var paintCanvasBorder = true;
+
+function paintToggleBorder() {
+	if (paintCanvasBorder == false) {
+		paintCanvasBorder = true;
+		$("#drawing").css("border", "2px solid gray");
+		$("#paint-modal-canvas-3").css("background-color", "rgb(0, 210, 0)");
+		$("#paint-modal-canvas-3").text("ON");
+	}
+	else if (paintCanvasBorder) {
+		paintCanvasBorder = false;
+		$("#drawing").css("border", "none");
+		$("#paint-modal-canvas-3").css("background-color", "lightgray");
+		$("#paint-modal-canvas-3").text("OFF");
+	}
+}
+
+function paintResizeCanvas() {
+	var width = $("#paint-modal-canvas-1").val();
+	var height = $("#paint-modal-canvas-2").val();
+	$("#drawing").css("width", width + "px");
+	$("#drawing").css("height", height + "px");
+}
+
+var fontSpecialEdition = false;
+
+function fontToggle() {
+	if (fontSpecialEdition == false) {
+		fontSpecialEdition = true;
+		$("*").css("font-family", "monospace");
+	}
+	else if (fontSpecialEdition == true) {
+		fontSpecialEdition = false;
+		$("*").css("font-family", "sans-serif");
+	}
 }
 
 function runCommand() {
