@@ -9,6 +9,10 @@ function isBetween (variable, valueOne, valueTwo) {
 	}
 }
 
+function getId(id) {
+	return document.getElementById(id);
+}
+
 function keyPress(event) {
 	if (event.key == "Enter") {
 		runCommand();
@@ -233,6 +237,11 @@ function overviewAlwaysPresentToggle() {
 	}
 }
 
+function switchModal(tab, content) {
+	$(".modal-content").hide();
+	$("#content-" + tab + "-" + content).show();
+}
+
 function openModalFor(tab, content) {
 	$(".modal-container").show();
 	$("#content-" + tab + "-" + content).show();
@@ -256,32 +265,26 @@ function paintCreateRectangle() {
 	var color = $(prefix + "6").val();
 	closeModal();
 	$("#drawing").append('<div id="drawing-' + id + '" style="position: absolute; width: ' + width + '%; height: ' + height + '%; left: ' + x + '%; top: ' + y + '%; background-color: ' + color + ';"></div>');
-}
-
-function paintEditShape() {
-	objectCount++;
-	var prefix = "#paint-modal-edit-";
-	var id = $(prefix + "1").val();
-	var x = $(prefix + "2").val();
-	var y = $(prefix + "3").val();
-	var width = $(prefix + "4").val();
-	var height = $(prefix + "5").val();
-	var color = $(prefix + "6").val();
-	closeModal();
-	$("#drawing-" + id).css("left", x + "%");
-	$("#drawing-" + id).css("top", y + "%");
-	$("#drawing-" + id).css("width", width + "%");
-	$("#drawing-" + id).css("height", height + "%");
-	$("#drawing-" + id).css("background-color", color);
-}
-
-function paintPerspective() {
-	var prefix = "#paint-modal-perspective-";
-	var id = $(prefix + "1").val();
-	var rotationX = $(prefix + "2").val();
-	var rotationY = $(prefix + "3").val();
-	closeModal();
-	$("#drawing-" + id).css("transform", "rotateX(" + rotationX + "deg) rotateY(" + rotationY + "deg)");
+	$("#drawing-" + id).dblclick(function() {
+		openModalFor("paint", "edit");
+		$("#paint-modal-edit-1").html(id);
+		var prefix = "#paint-modal-edit-";
+		var obj = "drawing-" + id;
+		var currentX = getId(obj).style.left;
+		currentX = currentX.substring(0, currentX.length - 1);
+		var currentY = getId(obj).style.top;
+		currentY = currentX.substring(0, currentY.length - 1);
+		var currentWidth = getId(obj).style.width;
+		currentWidth = currentWidth.substring(0, currentWidth.length - 1);
+		var currentHeight = getId(obj).style.height;
+		currentHeight = currentHeight.substring(0, currentHeight.length - 1);
+		var currentColor = getId(obj).style.backgroundColor;
+		$(prefix + "2").val(currentX);
+		$(prefix + "3").val(currentY);
+		$(prefix + "4").val(currentWidth);
+		$(prefix + "5").val(currentHeight);
+		$(prefix + "6").val(currentColor);
+	});
 }
 
 function paintCreateEllipse() {
@@ -295,11 +298,82 @@ function paintCreateEllipse() {
 	var color = $(prefix + "6").val();
 	closeModal();
 	$("#drawing").append('<div id="drawing-' + id + '" style="position: absolute; width: ' + width + '%; height: ' + height + '%; left: ' + x + '%; top: ' + y + '%; background-color: ' + color + '; border-radius: 50%;"></div>');
+	$("#drawing-" + id).dblclick(function() {
+		openModalFor("paint", "edit");
+		$("#paint-modal-edit-1").html(id);
+		var prefix = "#paint-modal-edit-";
+		var obj = "drawing-" + id;
+		var currentX = getId(obj).style.left;
+		currentX = currentX.substring(0, currentX.length - 1);
+		var currentY = getId(obj).style.top;
+		currentY = currentX.substring(0, currentY.length - 1);
+		var currentWidth = getId(obj).style.width;
+		currentWidth = currentWidth.substring(0, currentWidth.length - 1);
+		var currentHeight = getId(obj).style.height;
+		currentHeight = currentHeight.substring(0, currentHeight.length - 1);
+		var currentColor = getId(obj).style.backgroundColor;
+		$(prefix + "2").val(currentX);
+		$(prefix + "3").val(currentY);
+		$(prefix + "4").val(currentWidth);
+		$(prefix + "5").val(currentHeight);
+		$(prefix + "6").val(currentColor);
+	});
+}
+
+function paintEditShape() {
+	objectCount++;
+	var prefix = "#paint-modal-edit-";
+	var id = $(prefix + "1").html();
+	var x = $(prefix + "2").val();
+	var y = $(prefix + "3").val();
+	var width = $(prefix + "4").val();
+	var height = $(prefix + "5").val();
+	var color = $(prefix + "6").val();
+	closeModal();
+	$("#drawing-" + id).css("left", x + "%");
+	$("#drawing-" + id).css("top", y + "%");
+	$("#drawing-" + id).css("width", width + "%");
+	$("#drawing-" + id).css("height", height + "%");
+	$("#drawing-" + id).css("background-color", color);
+}
+
+function switchToBorder() {
+	var id = $("#paint-modal-edit-1").html();
+	switchModal("paint", "border");
+	$("#paint-modal-border-1").html(id);
+	var prefix = "#paint-modal-border-";
+	var obj = "drawing-" + id;
+	var currentThickness = getId(obj).style.borderWidth;
+	currentThickness = currentThickness.substring(0, currentThickness.length - 2);
+	var currentColor = getId(obj).style.borderColor;
+	var currentType = getId(obj).style.borderStyle;
+	$(prefix + "2").val(currentThickness);
+	$(prefix + "3").val(currentColor);
+	$(prefix + "4").val(currentType);
+}
+
+function switchToPerspective() {
+	var id = $("#paint-modal-edit-1").html();
+	switchModal("paint", "perspective");
+	$("#paint-modal-perspective-1").html(id);
+	var prefix = "#paint-modal-perspective-";
+	var obj = "drawing-" + id;
+	$(prefix + "2").val("");
+	$(prefix + "3").val("");
+}
+
+function paintPerspective() {
+	var prefix = "#paint-modal-perspective-";
+	var id = $(prefix + "1").html();
+	var rotationX = $(prefix + "2").val();
+	var rotationY = $(prefix + "3").val();
+	closeModal();
+	$("#drawing-" + id).css("transform", "rotateX(" + rotationX + "deg) rotateY(" + rotationY + "deg)");
 }
 
 function paintEditBorder() {
 	var prefix = "#paint-modal-border-";
-	var id = $(prefix + "1").val();
+	var id = $(prefix + "1").html();
 	var thickness = $(prefix + "2").val();
 	var color = $(prefix + "3").val();
 	var type = $(prefix + "4").val();
@@ -514,6 +588,14 @@ function showTab(newTab) {
 	var positions = tabButton.getBoundingClientRect();
 	$("#indicator").css("top", positions.y - 60);
 	tab = newTab;
+	if (newTab == "paint") {
+		$("#calculate-button").hide();
+		$("#results-container").hide();
+	}
+	else {
+		$("#calculate-button").show();
+		$("#results-container").show();
+	}
 }
 
 $(document).ready(function() {
