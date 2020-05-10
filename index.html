@@ -39,7 +39,7 @@
 					<h3>
 						Edit Border
 					</h3>
-					Object ID to Edit the Border for:<br> <input id="paint-modal-border-1"><br>
+					ID for the Object to Edit: <span id="paint-modal-border-1"></span><br><br>
 					Border Thickness (pixels, eg. 10):<br> <input id="paint-modal-border-2"><br>
 					Border Color (eg. black, #FFFFFF or rgba(0, 0, 0, 0,5)):<br> <input id="paint-modal-border-3"><br>
 					Border Type (eg. solid, dotted, dashed, double, groove, ridge, inset, outset or a mix: eg. dotted dashed solid double):<br> <input id="paint-modal-border-4"><br>
@@ -49,19 +49,21 @@
 					<h3>
 						Edit Shape
 					</h3>
-					ID for the Object to Edit:<br> <input id="paint-modal-edit-1"><br>
+					ID for the Object to be Edited: <span id="paint-modal-edit-1"></span><br><br>
 					New X (0 - 100):<br> <input id="paint-modal-edit-2"><br>
 					New Y (0 - 100):<br> <input id="paint-modal-edit-3"><br>
 					New Width (0 - 100):<br> <input id="paint-modal-edit-4"><br>
 					New Height (0 - 100):<br> <input id="paint-modal-edit-5"><br>
 					New Color (eg. black, #FFFFFF or rgba(0, 0, 0, 0.5)):<br> <input id="paint-modal-edit-6"><br>
-					<button onclick="paintEditShape()">Apply</button>
+					<button onclick="paintEditShape()">Apply</button><br><br>
+					<button onclick="switchToBorder()">Edit Border Instead</button><br><br>
+					<button onclick="switchToPerspective()">Edit Perspective and Tilt Instead</button>
 				</div>
 				<div class="modal-content" id="content-paint-perspective" style="display: none;">
 					<h3>
 						Perspective and Tilt
 					</h3>
-					ID for the Object to Edit:<br> <input id="paint-modal-perspective-1"><br>
+					ID for the Object to be Edited: <span id="paint-modal-perspective-1"></span><br><br>
 					X Rotation:<br> <input id="paint-modal-perspective-2"><br>
 					Y Rotation:<br> <input id="paint-modal-perspective-3"><br>
 					<button onclick="paintPerspective()">Apply</button>
@@ -202,21 +204,16 @@
 					<button onclick="openModalFor('paint', 'ellipse')">
 						Create Ellipse
 					</button>
-					<button onclick="openModalFor('paint', 'border')">
-						Edit Border
-					</button>
-					<button onclick="openModalFor('paint', 'edit')">
-						Edit Shape
-					</button>
-					<button onclick="openModalFor('paint', 'perspective')">
-						Perspective and Tilt
-					</button>
 					<button onclick="openModalFor('paint', 'clear')">
 						Clear Canvas
 					</button>
 					<button onclick="openModalFor('paint', 'canvas')">
 						Canvas Preferences
 					</button>
+				</div>
+				<div class="note">
+					<button onclick="$(this.parentElement).hide()" class="close" style="font-size: 18px; color: red;">&times;</button>
+					To edit an object, its border, or its perspective and tilt, just double-click it
 				</div>
 				<div id="drawing"></div>
 			</div>
@@ -266,7 +263,7 @@
 				Base (<code>e()</code> for Natural Logarithm): <input id="logarithm-1"><br>
 				Number: <input id="logarithm-2"><br>
 			</div>
-			<a href="#result"><button onclick="runCommand()">Calculate / Run Command</button></a>
+			<a href="#result"><button id="calculate-button" onclick="runCommand()">Calculate / Run Command</button></a>
 			<div id="results-container">
 				<h2>Results</h2>
 				<div id="result">Press "Calculate / Run Command" or Enter to View</div>
