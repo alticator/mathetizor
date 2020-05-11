@@ -257,12 +257,12 @@ var objectCount = 0;
 function paintCreateRectangle() {
 	objectCount++;
 	var prefix = "#paint-modal-rectangle-";
-	var id = $(prefix + "1").val();
-	var x = $(prefix + "2").val();
-	var y = $(prefix + "3").val();
-	var width = $(prefix + "4").val();
-	var height = $(prefix + "5").val();
-	var color = $(prefix + "6").val();
+	var id = objectCount;
+	var x = $(prefix + "1").val();
+	var y = $(prefix + "2").val();
+	var width = $(prefix + "3").val();
+	var height = $(prefix + "4").val();
+	var color = $(prefix + "5").val();
 	closeModal();
 	$("#drawing").append('<div id="drawing-' + id + '" style="position: absolute; width: ' + width + '%; height: ' + height + '%; left: ' + x + '%; top: ' + y + '%; background-color: ' + color + ';"></div>');
 	$("#drawing-" + id).dblclick(function() {
@@ -290,12 +290,12 @@ function paintCreateRectangle() {
 function paintCreateEllipse() {
 	objectCount++;
 	var prefix = "#paint-modal-ellipse-";
-	var id = $(prefix + "1").val();
-	var x = $(prefix + "2").val();
-	var y = $(prefix + "3").val();
-	var width = $(prefix + "4").val();
-	var height = $(prefix + "5").val();
-	var color = $(prefix + "6").val();
+	var id = objectCount;
+	var x = $(prefix + "1").val();
+	var y = $(prefix + "2").val();
+	var width = $(prefix + "3").val();
+	var height = $(prefix + "4").val();
+	var color = $(prefix + "5").val();
 	closeModal();
 	$("#drawing").append('<div id="drawing-' + id + '" style="position: absolute; width: ' + width + '%; height: ' + height + '%; left: ' + x + '%; top: ' + y + '%; background-color: ' + color + '; border-radius: 50%;"></div>');
 	$("#drawing-" + id).dblclick(function() {
@@ -362,6 +362,18 @@ function switchToPerspective() {
 	$(prefix + "3").val("");
 }
 
+function switchToShadow() {
+	var id = $("#paint-modal-edit-1").html();
+	switchModal("paint", "shadow");
+	$("#paint-modal-shadow-1").html(id);
+	var prefix = "#paint-modal-shadow-";
+	var obj = "drawing-" + id;
+	$(prefix + "2").val("");
+	$(prefix + "3").val("");
+	$(prefix + "4").val("");
+	$(prefix + "5").val("");
+}
+
 function paintPerspective() {
 	var prefix = "#paint-modal-perspective-";
 	var id = $(prefix + "1").html();
@@ -369,6 +381,17 @@ function paintPerspective() {
 	var rotationY = $(prefix + "3").val();
 	closeModal();
 	$("#drawing-" + id).css("transform", "rotateX(" + rotationX + "deg) rotateY(" + rotationY + "deg)");
+}
+
+function paintShadow() {
+	var prefix = "#paint-modal-shadow-";
+	var id = $(prefix + "1").html();
+	var offsetX = $(prefix + "2").val();
+	var offsetY = $(prefix + "3").val();
+	var blur = $(prefix + "4").val();
+	var color = $(prefix + "5").val();
+	closeModal();
+	$("#drawing-" + id).css("box-shadow", offsetX + "px " + offsetY + "px " + blur + "px " + color);
 }
 
 function paintEditBorder() {
