@@ -12,44 +12,42 @@
 			<div class="modal">
 				<button onclick="closeModal()" class="close">&times;</button>
 				<div class="modal-content" id="content-paint-rectangle" style="display: none;">
-					<h3>
+					<h2>
 						Create Rectangle
-					</h3>
-					ID (eg. myRectangle):<br> <input id="paint-modal-rectangle-1"><br>
-					X (0 - 100):<br> <input id="paint-modal-rectangle-2"><br>
-					Y (0 - 100):<br> <input id="paint-modal-rectangle-3"><br>
-					Width (0 - 100):<br> <input id="paint-modal-rectangle-4"><br>
-					Height (0 - 100):<br> <input id="paint-modal-rectangle-5"><br>
-					Color (eg. black, #FFFFFF or rgba(0, 0, 0, 0,5)):<br> <input id="paint-modal-rectangle-6"><br>
+					</h2>
+					X (0 - 100):<br> <input id="paint-modal-rectangle-1"><br>
+					Y (0 - 100):<br> <input id="paint-modal-rectangle-2"><br>
+					Width (0 - 100):<br> <input id="paint-modal-rectangle-3"><br>
+					Height (0 - 100):<br> <input id="paint-modal-rectangle-4"><br>
+					Color (eg. black, #FFFFFF or rgba(0, 0, 0, 0,5)):<br> <input id="paint-modal-rectangle-5"><br>
 					<button onclick="paintCreateRectangle()">Apply</button>
 				</div>
 				<div class="modal-content" id="content-paint-ellipse" style="display: none;">
-					<h3>
+					<h2>
 						Create Ellipse
-					</h3>
-					ID (eg. myEllipse):<br> <input id="paint-modal-ellipse-1"><br>
-					X (0 - 100):<br> <input id="paint-modal-ellipse-2"><br>
-					Y (0 - 100):<br> <input id="paint-modal-ellipse-3"><br>
-					Width (0 - 100):<br> <input id="paint-modal-ellipse-4"><br>
-					Height (0 - 100):<br> <input id="paint-modal-ellipse-5"><br>
-					Color (eg. black, #FFFFFF or rgba(0, 0, 0, 0,5)):<br> <input id="paint-modal-ellipse-6"><br>
+					</h2>
+					X (0 - 100):<br> <input id="paint-modal-ellipse-1"><br>
+					Y (0 - 100):<br> <input id="paint-modal-ellipse-2"><br>
+					Width (0 - 100):<br> <input id="paint-modal-ellipse-3"><br>
+					Height (0 - 100):<br> <input id="paint-modal-ellipse-4"><br>
+					Color (eg. black, #FFFFFF or rgba(0, 0, 0, 0,5)):<br> <input id="paint-modal-ellipse-5"><br>
 					<button onclick="paintCreateEllipse()">Apply</button>
 				</div>
 				<div class="modal-content" id="content-paint-border" style="display: none;">
-					<h3>
+					<h2>
 						Edit Border
-					</h3>
-					ID for the Object to Edit: <span id="paint-modal-border-1"></span><br><br>
+					</h2>
+					Ordinal Number for the Object to be Edited: <span id="paint-modal-border-1"></span><br><br>
 					Border Thickness (pixels, eg. 10):<br> <input id="paint-modal-border-2"><br>
 					Border Color (eg. black, #FFFFFF or rgba(0, 0, 0, 0,5)):<br> <input id="paint-modal-border-3"><br>
 					Border Type (eg. solid, dotted, dashed, double, groove, ridge, inset, outset or a mix: eg. dotted dashed solid double):<br> <input id="paint-modal-border-4"><br>
 					<button onclick="paintEditBorder()">Apply</button>
 				</div>
 				<div class="modal-content" id="content-paint-edit" style="display: none;">
-					<h3>
+					<h2>
 						Edit Shape
-					</h3>
-					ID for the Object to be Edited: <span id="paint-modal-edit-1"></span><br><br>
+					</h2>
+					Ordinal Number for the Object to be Edited: <span id="paint-modal-edit-1"></span><br><br>
 					New X (0 - 100):<br> <input id="paint-modal-edit-2"><br>
 					New Y (0 - 100):<br> <input id="paint-modal-edit-3"><br>
 					New Width (0 - 100):<br> <input id="paint-modal-edit-4"><br>
@@ -57,21 +55,33 @@
 					New Color (eg. black, #FFFFFF or rgba(0, 0, 0, 0.5)):<br> <input id="paint-modal-edit-6"><br>
 					<button onclick="paintEditShape()">Apply</button><br><br>
 					<button onclick="switchToBorder()">Edit Border Instead</button><br><br>
-					<button onclick="switchToPerspective()">Edit Perspective and Tilt Instead</button>
+					<button onclick="switchToPerspective()">Edit Perspective and Tilt Instead</button><br><br>
+					<button onclick="switchToShadow()">Edit Shadow and Blur Instead</button>
 				</div>
 				<div class="modal-content" id="content-paint-perspective" style="display: none;">
-					<h3>
+					<h2>
 						Perspective and Tilt
-					</h3>
-					ID for the Object to be Edited: <span id="paint-modal-perspective-1"></span><br><br>
+					</h2>
+					Ordinal Number for the Object to be Edited: <span id="paint-modal-perspective-1"></span><br><br>
 					X Rotation:<br> <input id="paint-modal-perspective-2"><br>
 					Y Rotation:<br> <input id="paint-modal-perspective-3"><br>
 					<button onclick="paintPerspective()">Apply</button>
 				</div>
+				<div class="modal-content" id="content-paint-shadow" style="display: none;">
+					<h2>
+						Shadow and Blur
+					</h2>
+					Ordinal Number for the Object to be Edited: <span id="paint-modal-shadow-1"></span><br><br>
+					X Offset (pixels):<br> <input id="paint-modal-shadow-2"><br>
+					Y Offset (pixels):<br> <input id="paint-modal-shadow-3"><br>
+					Blur (pixels):<br> <input id="paint-modal-shadow-4"><br>
+					Color:<br> <input id="paint-modal-shadow-5"><br>
+					<button onclick="paintShadow()">Apply</button>
+				</div>
 				<div class="modal-content" id="content-paint-clear" style="display: none;">
-					<h3>
+					<h2>
 						Clear Canvas
-					</h3>
+					</h2>
 					<p>
 						Are you sure you want to clear the canvas and delete the drawing?
 					</p>
@@ -83,9 +93,9 @@
 					</button>
 				</div>
 				<div class="modal-content" id="content-paint-canvas" style="display: none;">
-					<h3>
+					<h2>
 						Canvas Preferences
-					</h3>
+					</h2>
 					New Width (pixels, default is 500):<br> <input id="paint-modal-canvas-1"><br>
 					New Height (pixels, default is 500):<br> <input id="paint-modal-canvas-2"><br>
 					<button onclick="paintResizeCanvas()">Resize Canvas</button><br><br>
@@ -174,7 +184,8 @@
 					<code>r</code> for &divide; <br>
 					<code>t</code> for ( <br>
 					<code>y</code> for ) <br>
-					<code>← backspace</code> for backspace
+					<code>← backspace</code> for backspace <br>
+					<code>c</code> to clear / reset
 				</div>
 				<div class="note">
 					You can calculate decimal calculations on the Overview tab.
