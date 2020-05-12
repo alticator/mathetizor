@@ -1,6 +1,6 @@
 // Alticator 2020
 
-function isBetween (variable, valueOne, valueTwo) {
+function isBetween(variable, valueOne, valueTwo) {
 	if (variable > valueOne - 1 && variable < valueTwo + 1) {
 		return true;
 	}
@@ -360,6 +360,7 @@ function switchToPerspective() {
 	var obj = "drawing-" + id;
 	$(prefix + "2").val("");
 	$(prefix + "3").val("");
+	$(prefix + "4").val("");
 }
 
 function switchToShadow() {
@@ -379,8 +380,9 @@ function paintPerspective() {
 	var id = $(prefix + "1").html();
 	var rotationX = $(prefix + "2").val();
 	var rotationY = $(prefix + "3").val();
+	var rotation = $(prefix + "4").val();
 	closeModal();
-	$("#drawing-" + id).css("transform", "rotateX(" + rotationX + "deg) rotateY(" + rotationY + "deg)");
+	$("#drawing-" + id).css("transform", "rotateX(" + rotationX + "deg) rotateY(" + rotationY + "deg) rotate(" + rotation + "deg)");
 }
 
 function paintShadow() {
