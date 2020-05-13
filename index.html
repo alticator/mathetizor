@@ -33,6 +33,17 @@
 					Color (eg. black, #FFFFFF or rgba(0, 0, 0, 0,5)):<br> <input id="paint-modal-ellipse-5"><br>
 					<button onclick="paintCreateEllipse()">Apply</button>
 				</div>
+				<div class="modal-content" id="content-paint-triangle" style="display: none;">
+					<h2>
+						Create Triangle
+					</h2>
+					X (0 - 100):<br> <input id="paint-modal-triangle-1"><br>
+					Y (0 - 100):<br> <input id="paint-modal-triangle-2"><br>
+					Width (0 - 100):<br> <input id="paint-modal-triangle-3"><br>
+					Height (0 - 100):<br> <input id="paint-modal-triangle-4"><br>
+					Color (eg. black, #FFFFFF or rgba(0, 0, 0, 0,5)):<br> <input id="paint-modal-triangle-5"><br>
+					<button onclick="paintCreateTriangle()">Apply</button>
+				</div>
 				<div class="modal-content" id="content-paint-border" style="display: none;">
 					<h2>
 						Edit Border
@@ -53,10 +64,33 @@
 					New Width (0 - 100):<br> <input id="paint-modal-edit-4"><br>
 					New Height (0 - 100):<br> <input id="paint-modal-edit-5"><br>
 					New Color (eg. black, #FFFFFF or rgba(0, 0, 0, 0.5)):<br> <input id="paint-modal-edit-6"><br>
+					Opacity (0 - 1, eg. 0.5, default is 1):<br> <input id="paint-modal-edit-7"><br>
 					<button onclick="paintEditShape()">Apply</button><br><br>
 					<button onclick="switchToBorder()">Edit Border Instead</button><br><br>
 					<button onclick="switchToPerspective()">Edit Perspective and Tilt Instead</button><br><br>
 					<button onclick="switchToShadow()">Edit Shadow and Blur Instead</button><br><br>
+				</div>
+				<div class="modal-content" id="content-paint-edit-triangle" style="display: none;">
+					<h2>
+						Edit Shape
+					</h2>
+					Ordinal Number for the Object to be Edited: <span id="paint-modal-edit-triangle-1"></span><br><br>
+					New X (0 - 100):<br> <input id="paint-modal-edit-triangle-2"><br>
+					New Y (0 - 100):<br> <input id="paint-modal-edit-triangle-3"><br>
+					New Width (0 - 100):<br> <input id="paint-modal-edit-triangle-4"><br>
+					New Height (0 - 100):<br> <input id="paint-modal-edit-triangle-5"><br>
+					New Color (eg. black, #FFFFFF or rgba(0, 0, 0, 0.5)):<br> <input id="paint-modal-edit-triangle-6"><br>
+					Opacity (0 - 1, eg. 0.5, default is 1):<br> <input id="paint-modal-edit-triangle-7"><br>
+					<button onclick="paintEditTriangle()">Apply</button><br><br>
+					<button onclick="switchToRotation()">Edit Rotation Instead</button><br><br>
+				</div>
+				<div class="modal-content" id="content-paint-rotation" style="display: none;">
+					<h2>
+						Rotation
+					</h2>
+					Ordinal Number for the Object to be Edited: <span id="paint-modal-rotation-1"></span><br><br>
+					2D Rotation (degrees):<br> <input id="paint-modal-rotation-2"><br>
+					<button onclick="paintRotation()">Apply</button>
 				</div>
 				<div class="modal-content" id="content-paint-perspective" style="display: none;">
 					<h2>
@@ -86,10 +120,10 @@
 					<p>
 						Are you sure you want to clear the canvas and delete the drawing?
 					</p>
-					<button onclick="closeModal()">
+					<button onclick="closeModal()" style="padding: 10px; margin: 0;">
 						No, Do Not Delete
 					</button>
-					<button onclick="paintClearCanvas()">
+					<button onclick="paintClearCanvas()" style="padding: 10px; margin: 0; background-color: red;">
 						Yes
 					</button>
 				</div>
@@ -215,6 +249,9 @@
 					</button>
 					<button onclick="openModalFor('paint', 'ellipse')">
 						Create Ellipse
+					</button>
+					<button onclick="openModalFor('paint', 'triangle')">
+						Create Triangle
 					</button>
 					<button onclick="openModalFor('paint', 'clear')">
 						Clear Canvas
