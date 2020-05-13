@@ -279,11 +279,13 @@ function paintCreateRectangle() {
 		var currentHeight = getId(obj).style.height;
 		currentHeight = currentHeight.substring(0, currentHeight.length - 1);
 		var currentColor = getId(obj).style.backgroundColor;
+		var currentOpacity = getId(obj).style.opacity;
 		$(prefix + "2").val(currentX);
 		$(prefix + "3").val(currentY);
 		$(prefix + "4").val(currentWidth);
 		$(prefix + "5").val(currentHeight);
 		$(prefix + "6").val(currentColor);
+		$(prefix + "7").val(currentOpacity);
 	});
 }
 
@@ -312,12 +314,84 @@ function paintCreateEllipse() {
 		var currentHeight = getId(obj).style.height;
 		currentHeight = currentHeight.substring(0, currentHeight.length - 1);
 		var currentColor = getId(obj).style.backgroundColor;
+		var currentOpacity = getId(obj).style.opacity;
 		$(prefix + "2").val(currentX);
 		$(prefix + "3").val(currentY);
 		$(prefix + "4").val(currentWidth);
 		$(prefix + "5").val(currentHeight);
 		$(prefix + "6").val(currentColor);
+		$(prefix + "7").val(currentOpacity);
 	});
+}
+
+function paintCreateTriangle() {
+	objectCount++;
+	var prefix = "#paint-modal-triangle-";
+	var id = objectCount;
+	var x = $(prefix + "1").val();
+	var y = $(prefix + "2").val();
+	var width = parseFloat($(prefix + "3").val()) / 2;
+	var height = parseFloat($(prefix + "4").val());
+	var canvasWidth = $("#drawing").css("width");
+	canvasWidth = parseFloat(canvasWidth.toString(0, canvasWidth.length - 2));
+	var canvasHeight = $("#drawing").css("height");
+	canvasHeight = parseFloat(canvasHeight.toString(0, canvasHeight.length - 2));
+	width = width * (canvasWidth / 100);
+	height = height * (canvasHeight / 100);
+	var color = $(prefix + "5").val();
+	closeModal();
+	$("#drawing").append('<div id="drawing-' + id + '" style="position: absolute; width: 0; height: 0; border-left: ' + width + 'px solid transparent; border-right: ' + width + 'px solid transparent; border-bottom: ' + height + 'px solid ' + color + '; left: ' + x + '%; top: ' + y + '%;"></div>');
+	$("#drawing-" + id).dblclick(function() {
+		openModalFor("paint", "edit-triangle");
+		$("#paint-modal-edit-triangle-1").html(id);
+		var prefix = "#paint-modal-edit-triangle-";
+		var obj = "drawing-" + id;
+		var currentX = getId(obj).style.left;
+		currentX = currentX.substring(0, currentX.length - 1);
+		var currentY = getId(obj).style.top;
+		currentY = currentX.substring(0, currentY.length - 1);
+		var currentColor = getId(obj).style.borderBottomColor;
+		var currentOpacity = getId(obj).style.opacity;
+		$(prefix + "2").val(currentX);
+		$(prefix + "3").val(currentY);
+		$(prefix + "4").val("");
+		$(prefix + "5").val("");
+		$(prefix + "6").val(currentColor);
+		$(prefix + "7").val(currentOpacity);
+	});
+}
+
+function paintEditTriangle() {
+	objectCount++;
+	var prefix = "#paint-modal-edit-triangle-";
+	var id = $(prefix + "1").html();
+	var x = $(prefix + "2").val();
+	var y = $(prefix + "3").val();
+	var width = parseFloat($(prefix + "4").val()) / 2;
+	var height = parseFloat($(prefix + "5").val());
+	var canvasWidth = $("#drawing").css("width");
+	canvasWidth = parseFloat(canvasWidth.toString(0, canvasWidth.length - 2));
+	var canvasHeight = $("#drawing").css("height");
+	canvasHeight = parseFloat(canvasHeight.toString(0, canvasHeight.length - 2));
+	width = width * (canvasWidth / 100);
+	height = height * (canvasHeight / 100);
+	var color = $(prefix + "6").val();
+	var opacity = $(prefix + "7").val();
+	closeModal();
+	$("#drawing-" + id).css("left", x + "%");
+	$("#drawing-" + id).css("top", y + "%");
+	$("#drawing-" + id).css("border-left", width + "px solid transparent");
+	$("#drawing-" + id).css("border-right", width + "px solid transparent");
+	$("#drawing-" + id).css("border-bottom", height + "px solid " + color);
+	$("#drawing-" + id).css("opacity", opacity);
+}
+
+function paintRotation() {
+	var prefix = "#paint-modal-rotation-";
+	var id = $(prefix + "1").html();
+	var rotation = $(prefix + "2").val();
+	closeModal();
+	$("#drawing-" + id).css("transform", "rotate(" + rotation + "deg)");
 }
 
 function paintEditShape() {
@@ -329,14 +403,16 @@ function paintEditShape() {
 	var width = $(prefix + "4").val();
 	var height = $(prefix + "5").val();
 	var color = $(prefix + "6").val();
+	var opacity = $(prefix + "7").val();
 	closeModal();
 	$("#drawing-" + id).css("left", x + "%");
 	$("#drawing-" + id).css("top", y + "%");
 	$("#drawing-" + id).css("width", width + "%");
 	$("#drawing-" + id).css("height", height + "%");
 	$("#drawing-" + id).css("background-color", color);
+	$("#drawing-" + id).css("opacity", opacity);
 }
-
+ 
 function switchToBorder() {
 	var id = $("#paint-modal-edit-1").html();
 	switchModal("paint", "border");
@@ -361,6 +437,15 @@ function switchToPerspective() {
 	$(prefix + "2").val("");
 	$(prefix + "3").val("");
 	$(prefix + "4").val("");
+}
+
+function switchToRotation() {
+	var id = $("#paint-modal-edit-triangle-1").html();
+	switchModal("paint", "rotation");
+	$("#paint-modal-rotation-1").html(id);
+	var prefix = "#paint-modal-rotation-";
+	var obj = "drawing-" + id;
+	$(prefix + "2").val("");
 }
 
 function switchToShadow() {

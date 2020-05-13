@@ -42,6 +42,7 @@ code {background-color: lightgray; border: 1px solid gray; font-family: monospac
 .modal-container {background-color: rgb(0, 0, 0, 0.6); position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1; animation-name: fade-in; animation-duration: 0.5s;}
 .modal {background-color: white; padding: 10px; width: 60vw; margin: auto; margin-top: 20vh; z-index: 2; position: relative; animation-name: slide-in; animation-duration: 0.5s;}
 .close {float: right; font-size: 24px; color: gray; background-color: transparent;}
+.close:hover {background-color: transparent; color: darkslategray;}
 #drawing {width: 500px; height: 500px; border: 2px solid gray; margin: 15px auto; position: relative; background-color: white; perspective: 500px; overflow: hidden;}
 #drawing * {box-sizing: border-box; cursor: pointer;}
 #tab-paint {margin-top: 0; margin-left: 0;}
