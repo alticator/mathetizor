@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="ui.css">
 		<meta charset="UTF-8">
 	</head>
-	<body>
+	<body onbeforeunload="return confirmClose()">
 		<div class="modal-container" style="display: none;">
 			<div class="modal">
 				<button onclick="closeModal()" class="close">&times;</button>
@@ -19,7 +19,7 @@
 					Y (0 - 100):<br> <input id="paint-modal-rectangle-2"><br>
 					Width (0 - 100):<br> <input id="paint-modal-rectangle-3"><br>
 					Height (0 - 100):<br> <input id="paint-modal-rectangle-4"><br>
-					Color (eg. black, #FFFFFF or rgba(0, 0, 0, 0,5)):<br> <input id="paint-modal-rectangle-5"><br>
+					Fill (eg. black, #FFFFFF, rgba(0, 0, 0, 0.5), linear-gradient(to bottom right, black, white) or radial-gradient(#FFFFFF, #000000)):<br> <input id="paint-modal-rectangle-5"><br>
 					<button onclick="paintCreateRectangle()">Apply</button>
 				</div>
 				<div class="modal-content" id="content-paint-ellipse" style="display: none;">
@@ -30,7 +30,7 @@
 					Y (0 - 100):<br> <input id="paint-modal-ellipse-2"><br>
 					Width (0 - 100):<br> <input id="paint-modal-ellipse-3"><br>
 					Height (0 - 100):<br> <input id="paint-modal-ellipse-4"><br>
-					Color (eg. black, #FFFFFF or rgba(0, 0, 0, 0,5)):<br> <input id="paint-modal-ellipse-5"><br>
+					Fill (eg. black, #FFFFFF, rgba(0, 0, 0, 0.5), linear-gradient(to bottom right, black, white) or radial-gradient(#FFFFFF, #000000)):<br> <input id="paint-modal-ellipse-5"><br>
 					<button onclick="paintCreateEllipse()">Apply</button>
 				</div>
 				<div class="modal-content" id="content-paint-triangle" style="display: none;">
@@ -43,6 +43,20 @@
 					Height (0 - 100):<br> <input id="paint-modal-triangle-4"><br>
 					Color (eg. black, #FFFFFF or rgba(0, 0, 0, 0,5)):<br> <input id="paint-modal-triangle-5"><br>
 					<button onclick="paintCreateTriangle()">Apply</button>
+				</div>
+				<div class="modal-content" id="content-paint-text" style="display: none;">
+					<h2>
+						Create Text Box
+					</h2>
+					X (0 - 100):<br> <input id="paint-modal-text-1"><br>
+					Y (0 - 100):<br> <input id="paint-modal-text-2"><br>
+					Width (0 - 100):<br> <input id="paint-modal-text-3"><br>
+					Height (0 - 100):<br> <input id="paint-modal-text-4"><br>
+					Text Color (eg. black, #FFFFFF, rgb(0, 0, 0):<br> <input id="paint-modal-text-5"><br>
+					Text:<br> <input id="paint-modal-text-6"><br>
+					Font Size:<br> <input id="paint-modal-text-7"><br>
+					Text Align (eg. left, center, right or justify):<br> <input id="paint-modal-text-8"><br>
+					<button onclick="paintCreateText()">Apply</button>
 				</div>
 				<div class="modal-content" id="content-paint-border" style="display: none;">
 					<h2>
@@ -59,16 +73,35 @@
 						Edit Shape
 					</h2>
 					Ordinal Number for the Object to be Edited: <span id="paint-modal-edit-1"></span><br><br>
-					New X (0 - 100):<br> <input id="paint-modal-edit-2"><br>
-					New Y (0 - 100):<br> <input id="paint-modal-edit-3"><br>
-					New Width (0 - 100):<br> <input id="paint-modal-edit-4"><br>
-					New Height (0 - 100):<br> <input id="paint-modal-edit-5"><br>
-					New Color (eg. black, #FFFFFF or rgba(0, 0, 0, 0.5)):<br> <input id="paint-modal-edit-6"><br>
+					X (0 - 100):<br> <input id="paint-modal-edit-2"><br>
+					Y (0 - 100):<br> <input id="paint-modal-edit-3"><br>
+					Width (0 - 100):<br> <input id="paint-modal-edit-4"><br>
+					Height (0 - 100):<br> <input id="paint-modal-edit-5"><br>
+					Fill (eg. black, #FFFFFF, rgba(0, 0, 0, 0.5), linear-gradient(to bottom right, black, white) or radial-gradient(#FFFFFF, #000000)):<br> <input id="paint-modal-edit-6"><br>
 					Opacity (0 - 1, eg. 0.5, default is 1):<br> <input id="paint-modal-edit-7"><br>
+					Border Rounding (in Pixels, Setting border rounding for ellipses may turn them to rectangles.):<br> <input id="paint-modal-edit-8"><br>
 					<button onclick="paintEditShape()">Apply</button><br><br>
 					<button onclick="switchToBorder()">Edit Border Instead</button><br><br>
 					<button onclick="switchToPerspective()">Edit Perspective and Tilt Instead</button><br><br>
 					<button onclick="switchToShadow()">Edit Shadow and Blur Instead</button><br><br>
+				</div>
+				<div class="modal-content" id="content-paint-edit-text" style="display: none;">
+					<h2>
+						Edit Text Box
+					</h2>
+					Ordinal Number for the Object to be Edited: <span id="paint-modal-edit-text-1"></span><br><br>
+					X (0 - 100):<br> <input id="paint-modal-edit-text-2"><br>
+					Y (0 - 100):<br> <input id="paint-modal-edit-text-3"><br>
+					Width (0 - 100):<br> <input id="paint-modal-edit-text-4"><br>
+					Height (0 - 100):<br> <input id="paint-modal-edit-text-5"><br>
+					Fill (eg. black, #FFFFFF, rgba(0, 0, 0, 0.5), linear-gradient(to bottom right, black, white) or radial-gradient(#FFFFFF, #000000)):<br> <input id="paint-modal-edit-text-6"><br>
+					Opacity (0 - 1, eg. 0.5, default is 1):<br> <input id="paint-modal-edit-text-7"><br>
+					Text (You can also have eg. &lt;b&gt;Text&lt;/b&gt;</span> for bold text or eg. &lt;i&gt;Text&lt;/i&gt; for italic)</span><br> <input id="paint-modal-edit-text-8"><br>
+					Font Size:<br> <input id="paint-modal-edit-text-9"><br>
+					Text Align (eg. left, center, right or justify):<br> <input id="paint-modal-edit-text-10"><br>
+					<button onclick="paintEditText()">Apply</button><br><br>
+					<button onclick="switchToTextPerspective()">Edit Perspective and Tilt Instead</button><br><br>
+					<button onclick="switchToTextShadow()">Edit Shadow and Blur Instead</button><br><br>
 				</div>
 				<div class="modal-content" id="content-paint-edit-triangle" style="display: none;">
 					<h2>
@@ -102,6 +135,16 @@
 					2D Rotation (degrees):<br> <input id="paint-modal-perspective-4"><br>
 					<button onclick="paintPerspective()">Apply</button>
 				</div>
+				<div class="modal-content" id="content-paint-text-perspective" style="display: none;">
+					<h2>
+						Perspective and Tilt
+					</h2>
+					Ordinal Number for the Object to be Edited: <span id="paint-modal-text-perspective-1"></span><br><br>
+					X Rotation (degrees):<br> <input id="paint-modal-text-perspective-2"><br>
+					Y Rotation (degrees):<br> <input id="paint-modal-text-perspective-3"><br>
+					2D Rotation (degrees):<br> <input id="paint-modal-text-perspective-4"><br>
+					<button onclick="paintTextPerspective()">Apply</button>
+				</div>
 				<div class="modal-content" id="content-paint-shadow" style="display: none;">
 					<h2>
 						Shadow and Blur
@@ -112,6 +155,17 @@
 					Blur (pixels):<br> <input id="paint-modal-shadow-4"><br>
 					Color:<br> <input id="paint-modal-shadow-5"><br>
 					<button onclick="paintShadow()">Apply</button>
+				</div>
+				<div class="modal-content" id="content-paint-text-shadow" style="display: none;">
+					<h2>
+						Shadow and Blur
+					</h2>
+					Ordinal Number for the Object to be Edited: <span id="paint-modal-text-shadow-1"></span><br><br>
+					X Offset (pixels):<br> <input id="paint-modal-text-shadow-2"><br>
+					Y Offset (pixels):<br> <input id="paint-modal-text-shadow-3"><br>
+					Blur (pixels):<br> <input id="paint-modal-text-shadow-4"><br>
+					Color:<br> <input id="paint-modal-text-shadow-5"><br>
+					<button onclick="paintTextShadow()">Apply</button>
 				</div>
 				<div class="modal-content" id="content-paint-clear" style="display: none;">
 					<h2>
@@ -252,6 +306,9 @@
 					</button>
 					<button onclick="openModalFor('paint', 'triangle')">
 						Create Triangle
+					</button>
+					<button onclick="openModalFor('paint', 'text')">
+						Create Text Box
 					</button>
 					<button onclick="openModalFor('paint', 'clear')">
 						Clear Canvas
