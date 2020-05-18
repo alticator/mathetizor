@@ -1,5 +1,7 @@
 // Alticator 2020
 
+var developerMode = false;
+
 function isBetween(variable, valueOne, valueTwo) {
 	if (variable > valueOne - 1 && variable < valueTwo + 1) {
 		return true;
@@ -264,7 +266,7 @@ function paintCreateRectangle() {
 	var height = $(prefix + "4").val();
 	var color = $(prefix + "5").val();
 	closeModal();
-	$("#drawing").append('<div id="drawing-' + id + '" style="position: absolute; width: ' + width + '%; height: ' + height + '%; left: ' + x + '%; top: ' + y + '%; background-color: ' + color + ';"></div>');
+	$("#drawing").append('<div id="drawing-' + id + '" style="position: absolute; width: ' + width + '%; height: ' + height + '%; left: ' + x + '%; top: ' + y + '%; background: ' + color + ';"></div>');
 	$("#drawing-" + id).dblclick(function() {
 		openModalFor("paint", "edit");
 		$("#paint-modal-edit-1").html(id);
@@ -278,14 +280,16 @@ function paintCreateRectangle() {
 		currentWidth = currentWidth.substring(0, currentWidth.length - 1);
 		var currentHeight = getId(obj).style.height;
 		currentHeight = currentHeight.substring(0, currentHeight.length - 1);
-		var currentColor = getId(obj).style.backgroundColor;
+		var currentColor = getId(obj).style.background;
 		var currentOpacity = getId(obj).style.opacity;
+		var currentOpacity = getId(obj).style.borderRadius;
 		$(prefix + "2").val(currentX);
 		$(prefix + "3").val(currentY);
 		$(prefix + "4").val(currentWidth);
 		$(prefix + "5").val(currentHeight);
 		$(prefix + "6").val(currentColor);
 		$(prefix + "7").val(currentOpacity);
+		$(prefix + "8").val(currentRounding);
 	});
 }
 
@@ -299,7 +303,7 @@ function paintCreateEllipse() {
 	var height = $(prefix + "4").val();
 	var color = $(prefix + "5").val();
 	closeModal();
-	$("#drawing").append('<div id="drawing-' + id + '" style="position: absolute; width: ' + width + '%; height: ' + height + '%; left: ' + x + '%; top: ' + y + '%; background-color: ' + color + '; border-radius: 50%;"></div>');
+	$("#drawing").append('<div id="drawing-' + id + '" style="position: absolute; width: ' + width + '%; height: ' + height + '%; left: ' + x + '%; top: ' + y + '%; background: ' + color + '; border-radius: 50%;"></div>');
 	$("#drawing-" + id).dblclick(function() {
 		openModalFor("paint", "edit");
 		$("#paint-modal-edit-1").html(id);
@@ -313,14 +317,16 @@ function paintCreateEllipse() {
 		currentWidth = currentWidth.substring(0, currentWidth.length - 1);
 		var currentHeight = getId(obj).style.height;
 		currentHeight = currentHeight.substring(0, currentHeight.length - 1);
-		var currentColor = getId(obj).style.backgroundColor;
+		var currentColor = getId(obj).style.background;
 		var currentOpacity = getId(obj).style.opacity;
+		var currentRounding = getId(obj).style.borderRadius;
 		$(prefix + "2").val(currentX);
 		$(prefix + "3").val(currentY);
 		$(prefix + "4").val(currentWidth);
 		$(prefix + "5").val(currentHeight);
 		$(prefix + "6").val(currentColor);
 		$(prefix + "7").val(currentOpacity);
+		$(prefix + "8").val(currentRounding);
 	});
 }
 
@@ -361,6 +367,51 @@ function paintCreateTriangle() {
 	});
 }
 
+function paintCreateText() {
+	objectCount++;
+	var prefix = "#paint-modal-text-";
+	var id = objectCount;
+	var x = $(prefix + "1").val();
+	var y = $(prefix + "2").val();
+	var width = $(prefix + "3").val();
+	var height = $(prefix + "4").val();
+	var color = $(prefix + "5").val();
+	var text = $(prefix + "6").val();
+	var size = $(prefix + "7").val();
+	var align = $(prefix + "8").val();
+	closeModal();
+	$("#drawing").append('<div id="drawing-' + id + '" style="position: absolute; width: ' + width + '%; height: ' + height + '%; left: ' + x + '%; top: ' + y + '%; color: ' + color + '; font-size: ' + size + 'px; text-align: ' + align + '">' + text + '</div>');
+	$("#drawing-" + id).dblclick(function() {
+		openModalFor("paint", "edit-text");
+		$("#paint-modal-edit-text-1").html(id);
+		var prefix = "#paint-modal-edit-text-";
+		var obj = "drawing-" + id;
+		var currentX = getId(obj).style.left;
+		currentX = currentX.substring(0, currentX.length - 1);
+		var currentY = getId(obj).style.top;
+		currentY = currentX.substring(0, currentY.length - 1);
+		var currentWidth = getId(obj).style.width;
+		currentWidth = currentWidth.substring(0, currentWidth.length - 1);
+		var currentHeight = getId(obj).style.height;
+		currentHeight = currentHeight.substring(0, currentHeight.length - 1);
+		var currentColor = getId(obj).style.color;
+		var currentOpacity = getId(obj).style.opacity;
+		var currentText = $("#" + obj).html();
+		var currentSize = getId(obj).style.fontSize;
+		currentSize = currentSize.substring(0, currentSize.length - 2);
+		var currentAlign = getId(obj).style.textAlign;
+		$(prefix + "2").val(currentX);
+		$(prefix + "3").val(currentY);
+		$(prefix + "4").val(currentWidth);
+		$(prefix + "5").val(currentHeight);
+		$(prefix + "6").val(currentColor);
+		$(prefix + "7").val(currentOpacity);
+		$(prefix + "8").val(currentText);
+		$(prefix + "9").val(currentSize);
+		$(prefix + "10").val(currentAlign);
+	});
+}
+
 function paintEditTriangle() {
 	objectCount++;
 	var prefix = "#paint-modal-edit-triangle-";
@@ -394,6 +445,31 @@ function paintRotation() {
 	$("#drawing-" + id).css("transform", "rotate(" + rotation + "deg)");
 }
 
+function paintEditText() {
+	objectCount++;
+	var prefix = "#paint-modal-edit-text-";
+	var id = $(prefix + "1").html();
+	var x = $(prefix + "2").val();
+	var y = $(prefix + "3").val();
+	var width = $(prefix + "4").val();
+	var height = $(prefix + "5").val();
+	var color = $(prefix + "6").val();
+	var opacity = $(prefix + "7").val();
+	var text = $(prefix + "8").val();
+	var size = $(prefix + "9").val();
+	var align = $(prefix + "10").val();
+	closeModal();
+	$("#drawing-" + id).css("left", x + "%");
+	$("#drawing-" + id).css("top", y + "%");
+	$("#drawing-" + id).css("width", width + "%");
+	$("#drawing-" + id).css("height", height + "%");
+	$("#drawing-" + id).css("color", color);
+	$("#drawing-" + id).css("opacity", opacity);
+	$("#drawing-" + id).html(text);
+	$("#drawing-" + id).css("font-size", size + "px");
+	$("#drawing-" + id).css("text-align", align);
+}
+
 function paintEditShape() {
 	objectCount++;
 	var prefix = "#paint-modal-edit-";
@@ -404,13 +480,15 @@ function paintEditShape() {
 	var height = $(prefix + "5").val();
 	var color = $(prefix + "6").val();
 	var opacity = $(prefix + "7").val();
+	var borderRounding = $(prefix + "8").val();
 	closeModal();
 	$("#drawing-" + id).css("left", x + "%");
 	$("#drawing-" + id).css("top", y + "%");
 	$("#drawing-" + id).css("width", width + "%");
 	$("#drawing-" + id).css("height", height + "%");
-	$("#drawing-" + id).css("background-color", color);
+	$("#drawing-" + id).css("background", color);
 	$("#drawing-" + id).css("opacity", opacity);
+	$("#drawing-" + id).css("border-radius", borderRounding + "px");
 }
  
 function switchToBorder() {
@@ -439,6 +517,17 @@ function switchToPerspective() {
 	$(prefix + "4").val("");
 }
 
+function switchToTextPerspective() {
+	var id = $("#paint-modal-edit-text-1").html();
+	switchModal("paint", "text-perspective");
+	$("#paint-modal-text-perspective-1").html(id);
+	var prefix = "#paint-modal-text-perspective-";
+	var obj = "drawing-" + id;
+	$(prefix + "2").val("");
+	$(prefix + "3").val("");
+	$(prefix + "4").val("");
+}
+
 function switchToRotation() {
 	var id = $("#paint-modal-edit-triangle-1").html();
 	switchModal("paint", "rotation");
@@ -460,8 +549,30 @@ function switchToShadow() {
 	$(prefix + "5").val("");
 }
 
+function switchToTextShadow() {
+	var id = $("#paint-modal-edit-text-1").html();
+	switchModal("paint", "text-shadow");
+	$("#paint-modal-text-shadow-1").html(id);
+	var prefix = "#paint-modal-text-shadow-";
+	var obj = "drawing-" + id;
+	$(prefix + "2").val("");
+	$(prefix + "3").val("");
+	$(prefix + "4").val("");
+	$(prefix + "5").val("");
+}
+
 function paintPerspective() {
 	var prefix = "#paint-modal-perspective-";
+	var id = $(prefix + "1").html();
+	var rotationX = $(prefix + "2").val();
+	var rotationY = $(prefix + "3").val();
+	var rotation = $(prefix + "4").val();
+	closeModal();
+	$("#drawing-" + id).css("transform", "rotateX(" + rotationX + "deg) rotateY(" + rotationY + "deg) rotate(" + rotation + "deg)");
+}
+
+function paintTextPerspective() {
+	var prefix = "#paint-modal-text-perspective-";
 	var id = $(prefix + "1").html();
 	var rotationX = $(prefix + "2").val();
 	var rotationY = $(prefix + "3").val();
@@ -479,6 +590,17 @@ function paintShadow() {
 	var color = $(prefix + "5").val();
 	closeModal();
 	$("#drawing-" + id).css("box-shadow", offsetX + "px " + offsetY + "px " + blur + "px " + color);
+}
+
+function paintTextShadow() {
+	var prefix = "#paint-modal-text-shadow-";
+	var id = $(prefix + "1").html();
+	var offsetX = $(prefix + "2").val();
+	var offsetY = $(prefix + "3").val();
+	var blur = $(prefix + "4").val();
+	var color = $(prefix + "5").val();
+	closeModal();
+	$("#drawing-" + id).css("text-shadow", offsetX + "px " + offsetY + "px " + blur + "px " + color);
 }
 
 function paintEditBorder() {
@@ -520,6 +642,12 @@ function paintResizeCanvas() {
 	var height = $("#paint-modal-canvas-2").val();
 	$("#drawing").css("width", width + "px");
 	$("#drawing").css("height", height + "px");
+}
+
+function confirmClose() {
+	if (developerMode == false) {
+		return "Confirming Closing...";
+	}
 }
 
 var fontSpecialEdition = false;
