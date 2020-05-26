@@ -84,6 +84,7 @@
 					<button onclick="switchToBorder()">Edit Border Instead</button><br><br>
 					<button onclick="switchToPerspective()">Edit Perspective and Tilt Instead</button><br><br>
 					<button onclick="switchToShadow()">Edit Shadow and Blur Instead</button><br><br>
+					<button onclick="switchToDeleteShape()" style="background-color: red;">Delete Element</button><br><br>
 				</div>
 				<div class="modal-content" id="content-paint-edit-text" style="display: none;">
 					<h2>
@@ -94,28 +95,30 @@
 					Y (0 - 100):<br> <input id="paint-modal-edit-text-3"><br>
 					Width (0 - 100):<br> <input id="paint-modal-edit-text-4"><br>
 					Height (0 - 100):<br> <input id="paint-modal-edit-text-5"><br>
-					Fill (eg. black, #FFFFFF, rgba(0, 0, 0, 0.5), linear-gradient(to bottom right, black, white) or radial-gradient(#FFFFFF, #000000)):<br> <input id="paint-modal-edit-text-6"><br>
+					Text Color (eg. black, #FFFFFF, rgb(0, 0, 0):<br> <input id="paint-modal-edit-text-6"><br>
 					Opacity (0 - 1, eg. 0.5, default is 1):<br> <input id="paint-modal-edit-text-7"><br>
-					Text (You can also have eg. &lt;b&gt;Text&lt;/b&gt;</span> for bold text or eg. &lt;i&gt;Text&lt;/i&gt; for italic)</span><br> <input id="paint-modal-edit-text-8"><br>
+					Text (You can also have eg. &lt;b&gt;Text&lt;/b&gt; for bold text or eg. &lt;i&gt;Text&lt;/i&gt; for italic)<br> <input id="paint-modal-edit-text-8"><br>
 					Font Size:<br> <input id="paint-modal-edit-text-9"><br>
 					Text Align (eg. left, center, right or justify):<br> <input id="paint-modal-edit-text-10"><br>
 					<button onclick="paintEditText()">Apply</button><br><br>
 					<button onclick="switchToTextPerspective()">Edit Perspective and Tilt Instead</button><br><br>
 					<button onclick="switchToTextShadow()">Edit Shadow and Blur Instead</button><br><br>
+					<button onclick="switchToDeleteShapeFromText()" style="background-color: red;">Delete Element</button><br><br>
 				</div>
 				<div class="modal-content" id="content-paint-edit-triangle" style="display: none;">
 					<h2>
 						Edit Shape
 					</h2>
 					Ordinal Number for the Object to be Edited: <span id="paint-modal-edit-triangle-1"></span><br><br>
-					New X (0 - 100):<br> <input id="paint-modal-edit-triangle-2"><br>
-					New Y (0 - 100):<br> <input id="paint-modal-edit-triangle-3"><br>
+					X (0 - 100):<br> <input id="paint-modal-edit-triangle-2"><br>
+					Y (0 - 100):<br> <input id="paint-modal-edit-triangle-3"><br>
 					New Width (0 - 100):<br> <input id="paint-modal-edit-triangle-4"><br>
 					New Height (0 - 100):<br> <input id="paint-modal-edit-triangle-5"><br>
 					New Color (eg. black, #FFFFFF or rgba(0, 0, 0, 0.5)):<br> <input id="paint-modal-edit-triangle-6"><br>
 					Opacity (0 - 1, eg. 0.5, default is 1):<br> <input id="paint-modal-edit-triangle-7"><br>
 					<button onclick="paintEditTriangle()">Apply</button><br><br>
 					<button onclick="switchToRotation()">Edit Rotation Instead</button><br><br>
+					<button onclick="switchToDeleteShapeFromTriangle()" style="background-color: red;">Delete Element</button><br><br>
 				</div>
 				<div class="modal-content" id="content-paint-rotation" style="display: none;">
 					<h2>
@@ -189,6 +192,21 @@
 					New Height (pixels, default is 500):<br> <input id="paint-modal-canvas-2"><br>
 					<button onclick="paintResizeCanvas()">Resize Canvas</button><br><br>
 					Canvas Border <button onclick="paintToggleBorder()" id="paint-modal-canvas-3" class="checkbox" style="background-color: rgb(0, 210, 0)">ON</button>
+				</div>
+				<div class="modal-content" id="content-paint-delete" style="display: none;">
+					<h2>
+						Delete Shape
+					</h2>
+					<p>
+						Are you sure you want to delete the shape and the possible text inside it?
+					</p>
+					Ordinal Number for the Object to be Deleted: <span id="paint-modal-delete-1"></span><br><br>
+					<button onclick="closeModal()" style="padding: 10px; margin: 0;">
+						No, Do Not Delete
+					</button>
+					<button onclick="paintDeleteShape()" style="padding: 10px; margin: 0; background-color: red;">
+						Yes
+					</button>
 				</div>
 			</div>
 		</div>

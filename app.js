@@ -1,6 +1,6 @@
 // Alticator 2020
 
-var developerMode = false;
+var developerMode = true;
 
 function isBetween(variable, valueOne, valueTwo) {
 	if (variable > valueOne - 1 && variable < valueTwo + 1) {
@@ -9,6 +9,10 @@ function isBetween(variable, valueOne, valueTwo) {
 	else {
 		return false;
 	}
+}
+
+function removeElement(element) {
+	element.parentElement.removeChild(element);
 }
 
 function getId(id) {
@@ -275,14 +279,14 @@ function paintCreateRectangle() {
 		var currentX = getId(obj).style.left;
 		currentX = currentX.substring(0, currentX.length - 1);
 		var currentY = getId(obj).style.top;
-		currentY = currentX.substring(0, currentY.length - 1);
+		currentY = currentY.substring(0, currentY.length - 1);
 		var currentWidth = getId(obj).style.width;
 		currentWidth = currentWidth.substring(0, currentWidth.length - 1);
 		var currentHeight = getId(obj).style.height;
 		currentHeight = currentHeight.substring(0, currentHeight.length - 1);
 		var currentColor = getId(obj).style.background;
 		var currentOpacity = getId(obj).style.opacity;
-		var currentOpacity = getId(obj).style.borderRadius;
+		var currentRounding = getId(obj).style.borderRadius;
 		$(prefix + "2").val(currentX);
 		$(prefix + "3").val(currentY);
 		$(prefix + "4").val(currentWidth);
@@ -312,7 +316,7 @@ function paintCreateEllipse() {
 		var currentX = getId(obj).style.left;
 		currentX = currentX.substring(0, currentX.length - 1);
 		var currentY = getId(obj).style.top;
-		currentY = currentX.substring(0, currentY.length - 1);
+		currentY = currentY.substring(0, currentY.length - 1);
 		var currentWidth = getId(obj).style.width;
 		currentWidth = currentWidth.substring(0, currentWidth.length - 1);
 		var currentHeight = getId(obj).style.height;
@@ -355,7 +359,7 @@ function paintCreateTriangle() {
 		var currentX = getId(obj).style.left;
 		currentX = currentX.substring(0, currentX.length - 1);
 		var currentY = getId(obj).style.top;
-		currentY = currentX.substring(0, currentY.length - 1);
+		currentY = currentY.substring(0, currentY.length - 1);
 		var currentColor = getId(obj).style.borderBottomColor;
 		var currentOpacity = getId(obj).style.opacity;
 		$(prefix + "2").val(currentX);
@@ -389,7 +393,7 @@ function paintCreateText() {
 		var currentX = getId(obj).style.left;
 		currentX = currentX.substring(0, currentX.length - 1);
 		var currentY = getId(obj).style.top;
-		currentY = currentX.substring(0, currentY.length - 1);
+		currentY = currentY.substring(0, currentY.length - 1);
 		var currentWidth = getId(obj).style.width;
 		currentWidth = currentWidth.substring(0, currentWidth.length - 1);
 		var currentHeight = getId(obj).style.height;
@@ -490,7 +494,14 @@ function paintEditShape() {
 	$("#drawing-" + id).css("opacity", opacity);
 	$("#drawing-" + id).css("border-radius", borderRounding + "px");
 }
- 
+
+function paintDeleteShape() {
+	var id = $("#paint-modal-delete-1").html();
+	var obj = getId("drawing-" + id);
+	removeElement(obj);
+	closeModal();
+}
+
 function switchToBorder() {
 	var id = $("#paint-modal-edit-1").html();
 	switchModal("paint", "border");
@@ -515,6 +526,24 @@ function switchToPerspective() {
 	$(prefix + "2").val("");
 	$(prefix + "3").val("");
 	$(prefix + "4").val("");
+}
+
+function switchToDeleteShape() {
+	var id = $("#paint-modal-edit-1").html();
+	switchModal("paint", "delete");
+	$("#paint-modal-delete-1").html(id);
+}
+
+function switchToDeleteShapeFromText() {
+	var id = $("#paint-modal-edit-text-1").html();
+	switchModal("paint", "delete");
+	$("#paint-modal-delete-1").html(id);
+}
+
+function switchToDeleteShapeFromTriangle() {
+	var id = $("#paint-modal-edit-triangle-1").html();
+	switchModal("paint", "delete");
+	$("#paint-modal-delete-1").html(id);
 }
 
 function switchToTextPerspective() {
